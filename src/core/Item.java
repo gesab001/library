@@ -10,13 +10,20 @@ package core;
  * @author 14400
  */
 public class Item {
+         String title;
+         String type;
+         String identifier;
+         String status;
     
-    public Item(){}
+    public Item(String _title, String _type, String _identifier, String _status){
+        this.title = _title;
+        this.type =  _type;
+        this.identifier = _identifier;
+        this.status = _status;
+    }
+
     
-    private String title;
-    private String type;
-    private int identifier;
-    private String status;
+
     
     private void setTitle(){
     }

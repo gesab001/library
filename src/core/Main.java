@@ -18,8 +18,14 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-                new Login().setVisible(true);
+            Library library = new Library();
+            Item item = new Item("asdf", "adsfd", "adfadsf", "asdfad");
+            library.connectToLibraryDatabase("admin", "admin");
+            library.getAccountDetails(1234);
+            library.getLoan(3333);
+            library.addItem(item);
+            //new Login().setVisible(true);
+                
 
     }
     
