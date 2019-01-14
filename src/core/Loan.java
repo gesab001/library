@@ -13,43 +13,57 @@ import java.util.ArrayList;
  */
 public class Loan {
     
-    public Loan(){
+    int loanNo;
+    ArrayList<Item> items = new ArrayList<Item>(){};
+    int dueDate;
+    String type;
+    int borrowerID;
+    
+    
+    public Loan(int _loanNo, int _borrowerID, ArrayList<Item> _items, int _dueDate, String _type){
+        this.loanNo = _loanNo;
+        this.items = _items;
+        this.dueDate = _dueDate;
+        this.type = _type;
+        this.borrowerID = _borrowerID;
     }
     
-    private int loanNo;
-    private ArrayList<Item> items = new ArrayList<Item>(){};
-    private int dueDate;
-    private String type;
+
     
     
-    private void addBorrower(){
+    public void setBorrower(int borrowerID_input){
+        this.borrowerID = borrowerID_input;
     }
     
-    private void setLoanNo(){
+    public void setLoanNo(int loanNo_input){
+        this.loanNo = loanNo_input;
     }
     
-    private void setItems(){
+    public void setItems(ArrayList<Item> items_input){
+        this.items = items_input;
     }
 
-    private void setDueDate(){
+    public void setDueDate(int dueDate_input){
+        this.dueDate = dueDate_input;
     }
     
-    private int getLoanNo(){
+    public int getLoanNo(){
         return this.loanNo;
     }
     
-    private ArrayList getItems(){
+    public ArrayList getItems(){
         return this.items;
     }
     
-    private int getDueDate(){
+    public int getDueDate(){
         return this.dueDate;
     }
 
-    private void setType(){
+    public void setType(String type_input){
+        this.type = type_input;
     }
     
-    private String getType(){
+    public String getType(){
         return this.type;
     }
    

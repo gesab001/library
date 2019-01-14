@@ -58,14 +58,14 @@ public class Library {
                     }
                 return conn;
     }
-    public String addItem(Item item){
+    public String addItem(Item item, String table){
         Connection conn = this.connectToLibraryDatabase("admin", "admin");
         String title = item.title;
         String identifier = item.identifier;
         String status = item.status;
         String type = item.type; 
                 try {
-            String query = "insert into Item (Title, Type, Identifier, Status) values (?, ?, ?, ?)";
+            String query = "insert into " + table + "  (Title, Type, Identifier, Status) values (?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, title);
             stmt.setString(2, identifier);
@@ -84,13 +84,14 @@ public class Library {
         return "successfully added";
     }
     
-    public String removeItem(String identifier) {
+    public String removeItem(String identifier, String table) {
         Connection conn = this.connectToLibraryDatabase("gesab001", "ch5t8k4u");
 
                 try {
-            String query = "delete from Item where Identifier = (?)";
+            String query = "delete from " + table + " where Identifier = (?)";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, identifier);
+            stmt.setString(1, table);
+            stmt.setString(2, identifier);
             stmt.execute();
             conn.close();           
         }
@@ -182,35 +183,7 @@ public class Library {
     private void removeAccount(){
     }
     
-    public HashMap getAccountDetails(int accountNo){
-        Connection conn = this.connectToLibraryDatabase("admin", "admin");
-        HashMap<Integer, ArrayList> hashmap = new HashMap<Integer, ArrayList>();
-        ArrayList accountDetails = new ArrayList(){};
-        
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from Account where AccountNo = " + accountNo);
-            while(rs.next())  {     
-                String balance = rs.getString("Balance");
-                String openingDate = rs.getString("DateOfOpening").toString();
-                System.out.print(rs.getString("AccountNo"));
-                System.out.print(rs.getString("Balance"));
-                System.out.print(rs.getString("DateOfOpening").toString());
-                accountDetails.add(balance);
-                accountDetails.add(openingDate);
-            }
-            
-            conn.close();           
-        }
-        catch (SQLException ex) {
-        // handle any errors
-          System.out.println("SQLException: " + ex.getMessage());                 
-          System.out.println("SQLState: " + ex.getSQLState());
-          System.out.println("VendorError: " + ex.getErrorCode());
-        }
-        hashmap.put(accountNo, accountDetails);
-        return hashmap;
-    }
+ 
     
     
 }

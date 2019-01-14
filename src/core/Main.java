@@ -5,7 +5,7 @@
  */
 package core;
 
-import gui.Login;
+import gui.LoginActivity;
 
 /**
  *
@@ -19,11 +19,16 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
             Library library = new Library();
+            Account account = new Account();
             Item item = new Item("asdf", "adsfd", "adfadsf", "asdfad");
             library.connectToLibraryDatabase("admin", "admin");
-            library.getAccountDetails(1234);
+           // account.creditAmount(1234, 10);
+            account.debitAmount(1234, 10);
+
+            account.getAccountDetails(1234);
+            account.getBalance(1234);
             library.getLoan(3333);
-            library.addItem(item);
+            library.addItem(item, "Item");
             //new Login().setVisible(true);
                 
 

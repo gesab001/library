@@ -21,29 +21,36 @@ public class Item {
         this.identifier = _identifier;
         this.status = _status;
     }
+    
+    private void setTitle(String _title){
+        this.title = _title;
+    }
+    
+    private void setType(String _type){
+        this.type = _type;
+
+    }
+    
+    private void setIdentifier(String _identifier){
+        this.identifier = _identifier;
+    }
+    
+    private void setStatus(String _status){
+        this.status = _status;
+    }
+    
+    private String getTitle(String identifier){
+        return this.title;
+    }
+    
+    private String getType(String identifier){
+        return this.type;
+        
+    }
 
     
-
-    
-    private void setTitle(){
-    }
-    
-    private void setType(){
-    }
-    
-    private void setIdentifier(){
-    }
-    
-    private void getTitle(){
-    }
-    
-    private void getType(){
-    }
-    
-    private void getIdentifier(){
-    }
-    
-    private void getStatus(){
+    private String getStatus(String identifier){
+        return this.status;
     }
     
 }
