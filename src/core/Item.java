@@ -10,46 +10,69 @@ package core;
  * @author 14400
  */
 public class Item {
-         String title;
-         String type;
-         String identifier;
-         String status;
+    String identifier = null;
+    String title = null;
+    String author = null;
+    String keywords = null;
+    String type = null;
+    String status = null;
+
     
-    public Item(String _title, String _type, String _identifier, String _status){
-        this.title = _title;
-        this.type =  _type;
+    public Item(String _identifier, String _title, String _author, String _keywords, String _type,  String _status){
         this.identifier = _identifier;
+        this.title = _title;
+        this.author = _author;
+        this.keywords= _keywords;
+        this.type =  _type;
         this.status = _status;
     }
     
-    private void setTitle(String _title){
+    public void setIdentifier(String _identifier){
+        this.identifier = _identifier;
+    }
+    
+    public void setTitle(String _title){
         this.title = _title;
     }
     
-    private void setType(String _type){
+    public void setAuthor(String _author){
+        this.author = _author;
+    }
+        
+    public void setKeywords(String _keywords){
+        this.keywords = _keywords;
+    }
+        
+    public void setType(String _type){
         this.type = _type;
 
     }
     
-    private void setIdentifier(String _identifier){
-        this.identifier = _identifier;
-    }
-    
-    private void setStatus(String _status){
+    public void setStatus(String _status){
         this.status = _status;
     }
-    
-    private String getTitle(String identifier){
+ 
+    public String getIdentifier(String _identifier){
+        return this.identifier;
+    }   
+    public String getTitle(String _title){
         return this.title;
     }
     
-    private String getType(String identifier){
+    public String getAuthor(String _author){
+        return this.author;
+    }
+    
+    public String getKeywords(String _keywords){
+        return this.keywords;
+        
+    }
+    public String getType(String _type ){
         return this.type;
         
     }
-
     
-    private String getStatus(String identifier){
+    public String getStatus(String _status){
         return this.status;
     }
     

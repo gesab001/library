@@ -18,14 +18,18 @@ import java.util.HashMap;
  * @author 14400
  */
 public class Account  {
-    int accNo;
+    private int accNo;
     private int balance;
     private int dateOfOpening;
     private Borrower borrower;
 
     
     
-    public Account(){
+    public Account(int _accNo, int _balance, int _dateOfOpening, Borrower _borrower){
+        this.accNo = _accNo;
+        this.balance = _balance;
+        this.dateOfOpening = _dateOfOpening;
+        this.borrower = _borrower;
  
     }
     

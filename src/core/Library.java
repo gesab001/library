@@ -60,28 +60,34 @@ public class Library {
     }
     public String addItem(Item item, String table){
         Connection conn = this.connectToLibraryDatabase("admin", "admin");
-        String title = item.title;
+        String message_from_server = null;
         String identifier = item.identifier;
-        String status = item.status;
+        String title = item.title;
+        String author = item.author;
+        String keywords = item.keywords;
         String type = item.type; 
+        String status = item.status;
                 try {
-            String query = "insert into " + table + "  (Title, Type, Identifier, Status) values (?, ?, ?, ?)";
+            String query = "insert into " + table + "  (Identifier, Title, Author, Keywords, Type,  Status) values (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, title);
-            stmt.setString(2, identifier);
-            stmt.setString(3, status);
-            stmt.setString(4, type);
+            stmt.setString(1, identifier);
+            stmt.setString(2, title);
+            stmt.setString(3, author);
+            stmt.setString(4, keywords);
+            stmt.setString(5, keywords);
+            stmt.setString(6, keywords);
             stmt.execute();
+            message_from_server = "item successfully added";
             conn.close();           
         }
         catch (SQLException ex) {
         // handle any errors
-          System.out.println("SQLException: " + ex.getMessage());                 
-          System.out.println("SQLState: " + ex.getSQLState());
-          System.out.println("VendorError: " + ex.getErrorCode());
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
         }
-        System.out.print("successfully added");
-        return "successfully added";
+        return message_from_server;
     }
     
     public String removeItem(String identifier, String table) {
@@ -97,9 +103,10 @@ public class Library {
         }
         catch (SQLException ex) {
         // handle any errors
-          System.out.println("SQLException: " + ex.getMessage());                 
-          System.out.println("SQLState: " + ex.getSQLState());
-          System.out.println("VendorError: " + ex.getErrorCode());
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          
         }
         System.out.print("successfully deleted");
         return "successfully deleted";
