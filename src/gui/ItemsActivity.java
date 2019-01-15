@@ -31,7 +31,7 @@ public class ItemsActivity extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        check_item_exist_button = new javax.swing.JButton();
         item_id_input = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -55,20 +55,17 @@ public class ItemsActivity extends javax.swing.JFrame {
 
         jPanel1.setEnabled(false);
 
-        jButton1.setText("check if item exists");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        check_item_exist_button.setText("check if item exists");
+        check_item_exist_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                check_item_exist_buttonActionPerformed(evt);
             }
         });
-
-        item_id_input.setText(" id");
 
         jLabel1.setText("Item Identifier");
 
         jLabel2.setText("Title");
 
-        title_input.setText("title");
         title_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 title_inputActionPerformed(evt);
@@ -77,11 +74,7 @@ public class ItemsActivity extends javax.swing.JFrame {
 
         jLabel3.setText("Type");
 
-        type_input.setText("type");
-
         jLabel4.setText("Status");
-
-        status_input.setText("status");
 
         add_item_button.setText("Add");
         add_item_button.addActionListener(new java.awt.event.ActionListener() {
@@ -101,11 +94,7 @@ public class ItemsActivity extends javax.swing.JFrame {
 
         jLabel5.setText("Author");
 
-        author_input.setText("author");
-
         jLabel6.setText("Keywords");
-
-        keywords_input.setText("keywords");
 
         item_doesnt_exist_message.setForeground(new java.awt.Color(255, 0, 51));
 
@@ -126,7 +115,7 @@ public class ItemsActivity extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel3)
                     .addComponent(item_id_input)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(check_item_exist_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(title_input)
                     .addComponent(author_input)
                     .addComponent(keywords_input)
@@ -138,9 +127,7 @@ public class ItemsActivity extends javax.swing.JFrame {
                         .addComponent(update_item_button, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(delete_item_button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(message_from_server_label, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(message_from_server_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,7 +140,7 @@ public class ItemsActivity extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(item_id_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(check_item_exist_button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -174,9 +161,9 @@ public class ItemsActivity extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(status_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(message_from_server_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(message_from_server_label, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_item_button)
                     .addComponent(update_item_button)
@@ -229,18 +216,45 @@ public class ItemsActivity extends javax.swing.JFrame {
         Item item = new Item(identifier, title, author, keywords, type, status);
         String message_from_server = library.addItem(item, "Item");
         message_from_server_label.setText(message_from_server);
+        item_id_input.setText("");
+        title_input.setText("");
+        author_input.setText("");
+        keywords_input.setText("");
+        type_input.getText();
+        status_input.setText("");
         
         
         
     }//GEN-LAST:event_add_item_buttonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void check_item_exist_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_item_exist_buttonActionPerformed
         // TODO add your handling code here:
-        String identifier
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String item_id = item_id_input.getText();
+        System.out.print(item_id);
+        Item item = library.getItem(item_id);
+        if (item==null){
+            item_doesnt_exist_message.setText("item doesn't exist");
+        }else{
+            item_doesnt_exist_message.setText("");
+            title_input.setText(item.getTitle());
+            author_input.setText(item.getAuthor());
+            keywords_input.setText(item.getKeywords());
+            type_input.setText(item.getType());
+            status_input.setText(item.getStatus());
+        }
+
+  
+        
+
+    }//GEN-LAST:event_check_item_exist_buttonActionPerformed
 
     private void delete_item_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_item_buttonActionPerformed
         // TODO add your handling code here:
+        String identifier = item_id_input.getText();
+        String message_confirmation = library.removeItem(identifier);
+        message_from_server_label.setText(message_confirmation);
+        
+        
     }//GEN-LAST:event_delete_item_buttonActionPerformed
 
     /**
@@ -282,10 +296,10 @@ public class ItemsActivity extends javax.swing.JFrame {
     private javax.swing.JButton add_item_button;
     private javax.swing.JTextField author_input;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton check_item_exist_button;
     private javax.swing.JButton delete_item_button;
     private javax.swing.JLabel item_doesnt_exist_message;
     private javax.swing.JTextField item_id_input;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

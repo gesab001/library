@@ -18,7 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-//            Library library = new Library();
+            Library library = new Library();
 //            Account account = new Account();
 //            Item item = new Item("asdf", "adsfd", "adfadsf", "asdfad");
 //            library.connectToLibraryDatabase("admin", "admin");
@@ -30,6 +30,11 @@ public class Main {
 //            library.getLoan(3333);
 //            library.addItem(item, "Item");
             new LoginActivity().setVisible(true);
+//              String message = library.removeItem("computing111");
+//              System.out.print(message);
+ //           Item item = library.getItem("apple123");
+ //          System.out.print(item.getTitle());
+            
                 
 
     }

@@ -10,12 +10,12 @@ package core;
  * @author 14400
  */
 public class Item {
-    String identifier = null;
-    String title = null;
-    String author = null;
-    String keywords = null;
-    String type = null;
-    String status = null;
+    private String identifier;
+    private String title;
+    private String author;
+    private String keywords;
+    private String type;
+    private String status;
 
     
     public Item(String _identifier, String _title, String _author, String _keywords, String _type,  String _status){
@@ -52,27 +52,27 @@ public class Item {
         this.status = _status;
     }
  
-    public String getIdentifier(String _identifier){
+    public String getIdentifier(){
         return this.identifier;
     }   
-    public String getTitle(String _title){
+    public String getTitle(){
         return this.title;
     }
     
-    public String getAuthor(String _author){
+    public String getAuthor(){
         return this.author;
     }
     
-    public String getKeywords(String _keywords){
+    public String getKeywords(){
         return this.keywords;
         
     }
-    public String getType(String _type ){
+    public String getType(){
         return this.type;
         
     }
     
-    public String getStatus(String _status){
+    public String getStatus(){
         return this.status;
     }
     

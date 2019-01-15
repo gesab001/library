@@ -25,7 +25,7 @@ public class Library {
     
     private String Name;
     private int Code;
-    public Item item;
+    public Item item = null;
     public Account account;
     public Loan loan;
 
@@ -61,21 +61,21 @@ public class Library {
     public String addItem(Item item, String table){
         Connection conn = this.connectToLibraryDatabase("admin", "admin");
         String message_from_server = null;
-        String identifier = item.identifier;
-        String title = item.title;
-        String author = item.author;
-        String keywords = item.keywords;
-        String type = item.type; 
-        String status = item.status;
-                try {
+        String identifier = item.getIdentifier();
+        String title = item.getTitle();
+        String author = item.getAuthor();
+        String keywords = item.getKeywords();
+        String type = item.getType(); 
+        String status = item.getStatus();
+        try {
             String query = "insert into " + table + "  (Identifier, Title, Author, Keywords, Type,  Status) values (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, identifier);
             stmt.setString(2, title);
             stmt.setString(3, author);
             stmt.setString(4, keywords);
-            stmt.setString(5, keywords);
-            stmt.setString(6, keywords);
+            stmt.setString(5, type);
+            stmt.setString(6, status);
             stmt.execute();
             message_from_server = "item successfully added";
             conn.close();           
@@ -90,15 +90,15 @@ public class Library {
         return message_from_server;
     }
     
-    public String removeItem(String identifier, String table) {
-        Connection conn = this.connectToLibraryDatabase("gesab001", "ch5t8k4u");
-
-                try {
-            String query = "delete from " + table + " where Identifier = (?)";
+    public String removeItem(String identifier) {
+        Connection conn = this.connectToLibraryDatabase("admin", "admin");
+        String message_from_server = null;
+        try {
+            String query = "delete from Item where Identifier = (?)";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, table);
-            stmt.setString(2, identifier);
+            stmt.setString(1, identifier);
             stmt.execute();
+            message_from_server = "item successfully deleted";
             conn.close();           
         }
         catch (SQLException ex) {
@@ -106,43 +106,44 @@ public class Library {
           String exception = ("SQLException: " + ex.getMessage());                 
           String state = ("SQLState: " + ex.getSQLState());
           String vendor = ("VendorError: " + ex.getErrorCode());
-          
+          message_from_server = exception + " " + state + " " + vendor;
+
         }
-        System.out.print("successfully deleted");
-        return "successfully deleted";
+        return message_from_server;
     }
     
-    private HashMap getItem(Item item){
-        Connection conn = this.connectToLibraryDatabase("admin", "admin");
-        HashMap<String, ArrayList> hashmap = new HashMap<String, ArrayList>();
-        ArrayList arraylist = new ArrayList(){};
-        
+    public Item getItem(String identifier){
+        String message_from_server = null;
+        Connection conn = this.connectToLibraryDatabase("admin", "admin");    
         try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from Item where LoanNo = " + item.identifier);
-            while(rs.next())  {     
-                String a = rs.getString("Title").toString();
-                String b = rs.getString("Type").toString();
-                String c = rs.getString("Identifier").toString();
-                String d = rs.getString("Status").toString();
-                System.out.print(a + b + c + d);
-                arraylist.add(a);
-                arraylist.add(b);
-                arraylist.add(c);
-                arraylist.add(d);
-
+            String query = "select * from Item where Identifier='" + identifier + "'" ;
+            PreparedStatement stmt = conn.prepareStatement(query);
+           // stmt.setString(1, identifier);
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next() == false){
+                return null;
+            } else{
+                do {
+                String title = rs.getString("Title").toString();
+                String author = rs.getString("Author").toString();
+                String keywords = rs.getString("Keywords").toString();
+                String type = rs.getString("Type").toString();
+                String status = rs.getString("Status").toString();
+                item = new Item(identifier, title, author, keywords, type, status);
+                } while(rs.next()); 
             }
             
             conn.close();           
         }
         catch (SQLException ex) {
         // handle any errors
-          System.out.println("SQLException: " + ex.getMessage());                 
-          System.out.println("SQLState: " + ex.getSQLState());
-          System.out.println("VendorError: " + ex.getErrorCode());
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+          System.out.print(message_from_server);
         }
-        hashmap.put(item.identifier.toString(), arraylist);
-        return hashmap;
+        return item;
     }
     
     private void addLoan(){
