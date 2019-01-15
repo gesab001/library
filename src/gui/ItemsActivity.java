@@ -84,6 +84,11 @@ public class ItemsActivity extends javax.swing.JFrame {
         });
 
         update_item_button.setText("Update");
+        update_item_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_item_buttonActionPerformed(evt);
+            }
+        });
 
         delete_item_button.setText("Delete");
         delete_item_button.addActionListener(new java.awt.event.ActionListener() {
@@ -229,11 +234,17 @@ public class ItemsActivity extends javax.swing.JFrame {
 
     private void check_item_exist_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_item_exist_buttonActionPerformed
         // TODO add your handling code here:
+        message_from_server_label.setText("");
         String item_id = item_id_input.getText();
         System.out.print(item_id);
         Item item = library.getItem(item_id);
         if (item==null){
             item_doesnt_exist_message.setText("item doesn't exist");
+            title_input.setText("");
+            author_input.setText("");
+            keywords_input.setText("");
+            type_input.setText("");
+            status_input.setText("");
         }else{
             item_doesnt_exist_message.setText("");
             title_input.setText(item.getTitle());
@@ -256,6 +267,20 @@ public class ItemsActivity extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_delete_item_buttonActionPerformed
+
+    private void update_item_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_item_buttonActionPerformed
+        // TODO add your handling code here:
+        String identifier = item_id_input.getText();
+        String title = title_input.getText();
+        String author = author_input.getText();
+        String keywords = keywords_input.getText();
+        String type = type_input.getText();
+        String status = status_input.getText();
+
+        Item item = new Item(identifier, title, author, keywords, type, status);
+        String message_from_server = library.updateItem(item);
+        message_from_server_label.setText(message_from_server);
+    }//GEN-LAST:event_update_item_buttonActionPerformed
 
     /**
      * @param args the command line arguments

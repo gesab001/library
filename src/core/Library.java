@@ -90,6 +90,39 @@ public class Library {
         return message_from_server;
     }
     
+    public String updateItem(Item item){
+        Connection conn = this.connectToLibraryDatabase("admin", "admin");
+        String message_from_server = null;
+        String identifier = item.getIdentifier();
+        String title = item.getTitle();
+        String author = item.getAuthor();
+        String keywords = item.getKeywords();
+        String type = item.getType(); 
+        String status = item.getStatus();
+        try {
+            String query = "update Item set Identifier = ?, Title = ?, Author = ?, Keywords = ?, Type = ?,  Status = ? where Identifier = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, identifier);
+            stmt.setString(2, title);
+            stmt.setString(3, author);
+            stmt.setString(4, keywords);
+            stmt.setString(5, type);
+            stmt.setString(6, status);
+            stmt.setString(7, identifier);
+            stmt.execute();
+            message_from_server = "item successfully updated";
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+        }
+        return message_from_server;
+    }
+        
     public String removeItem(String identifier) {
         Connection conn = this.connectToLibraryDatabase("admin", "admin");
         String message_from_server = null;
