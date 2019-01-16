@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author 14400
  */
-public class Checkout extends javax.swing.JFrame {
+public class CheckIn extends javax.swing.JFrame {
 
     Library library = new Library();
     ArrayList<Item> itemlist = new ArrayList<Item>(){};
@@ -27,7 +27,7 @@ public class Checkout extends javax.swing.JFrame {
     /**
      * Creates new form ItemsActivity
      */
-    public Checkout() {
+    public CheckIn() {
         initComponents();
     }
 
@@ -664,7 +664,7 @@ public class Checkout extends javax.swing.JFrame {
                 try {
                     duedate = this.getDueDate();
                 } catch (ParseException ex) {
-                    Logger.getLogger(Checkout.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 //create new Loan         //add items and borrower to loan
@@ -743,14 +743,22 @@ public class Checkout extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -763,7 +771,7 @@ public class Checkout extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Checkout().setVisible(true);
+                new CheckIn().setVisible(true);
             }
         });
     }

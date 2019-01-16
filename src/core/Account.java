@@ -186,7 +186,24 @@ public class Account  {
         return hashmap;
     }
     
- 
-    
-    
+     public String removeBorrower(int borrowerID) {
+        Connection conn = library.connectToLibraryDatabase("admin", "admin");
+        String message_from_server = null;
+        try {
+            String query = "delete from Borrower where BorrowerID = (?)";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, borrowerID);
+            stmt.execute();
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+
+        }
+        return message_from_server;
+     }
 }

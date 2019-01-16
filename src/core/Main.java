@@ -5,7 +5,7 @@
  */
 package core;
 
-import gui.LoginActivity;
+import gui.*;
 import java.util.ArrayList;
 
 /**
@@ -35,7 +35,8 @@ public class Main {
 //            account.getBalance(1234);
 //            library.getLoan(3333);
 //            library.addItem(item, "Item");
-             new LoginActivity().setVisible(true);
+//             new LoginActivity().setVisible(true);
+            new Checkout().setVisible(true);
 //              String message = library.removeItem("computing111");
 //              System.out.print(message);
  //           Item item = library.getItem("apple123");

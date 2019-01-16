@@ -216,16 +216,17 @@ public class Library {
 //    }
  
     public ArrayList getBorrowerInformation(int borrowerID){
+        System.out.print(borrowerID);
         String message_from_server = null;    
         ArrayList<Borrower> borrowerlist = new ArrayList<Borrower>(){};
         Connection conn = this.connectToLibraryDatabase("admin", "admin");    
         try {
-            String query = "select * from Borrower where BorrowerID='" + borrowerID + "'";
+            String query = "select * from Borrower where BorrowerID="+ borrowerID;
             PreparedStatement stmt = conn.prepareStatement(query);
-           // stmt.setString(1, identifier);
+            //stmt.setInt(1, borrowerID);
             ResultSet rs = stmt.executeQuery(query);
             if (rs.next() == false){
-                return null;
+                return borrowerlist;
             } else{
                 do {
                 borrowerID = rs.getInt("BorrowerID");
@@ -237,7 +238,7 @@ public class Library {
                 int accountNo = rs.getInt("AccountNo");
                 String username = rs.getString("Username");
                 String password = rs.getString("Password");
-                Borrower borrower = new Borrower(borrowerID, name, surname, address, email, phone, accountNo, username, password);
+                borrower = new Borrower(borrowerID, name, surname, address, email, phone, accountNo, username, password);
                 borrowerlist.add(borrower);
                
                 } while(rs.next()); 
@@ -294,9 +295,35 @@ public class Library {
         }
         return message_from_server;
     }
+  
+    public void addLoan(Loan loan){
+        Connection conn = this.connectToLibraryDatabase("admin", "admin");
+        String message_from_server = null;
+        int borrowerID = loan.getBorrowerID();
+        String duedate = loan.getDueDate();
+        String type = loan.getType();
+        String items = loan.loanItemsToString();
+        try {
+            String query = "insert into Loan (Item, DueDate, Type, BorrowerID) values (?, ?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, items  );
+            stmt.setString(2, duedate);
+            stmt.setString(3, type);
+            stmt.setInt(4, borrowerID);
+            stmt.execute();
+                    System.out.print("add loan");
 
-    
-    private void addLoan(){
+//            message_from_server = "loan successfully created";
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          System.out.print(exception + " " + state + " " + vendor);
+        }
+       // return message_from_server;
 
         
     }
@@ -335,10 +362,31 @@ public class Library {
     private void removeLoan(){
     }
     
-    private void removeAccount(){
+    public String removeAccount(int borrowerID) {
+        Connection conn = this.connectToLibraryDatabase("admin", "admin");
+        
+        String message_from_server = null;
+        try {
+            String query = "delete from Account where BorrowerID = (?)";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, borrowerID);
+            stmt.execute();
+            String query1 = "delete from Borrower where BorrowerID = (?)";
+            PreparedStatement stmt1 = conn.prepareStatement(query1);
+            stmt1.setInt(1, borrowerID);
+            stmt1.execute();
+            message_from_server = "borrower account successfully deleted ";
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+
+        }
+        return message_from_server;    
     }
-    
- 
-    
-    
+        
 }

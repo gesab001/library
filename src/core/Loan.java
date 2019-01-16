@@ -15,13 +15,12 @@ public class Loan {
     
     int loanNo;
     ArrayList<Item> items = new ArrayList<Item>(){};
-    int dueDate;
+    String dueDate;
     String type;
     int borrowerID;
     
     
-    public Loan(int _loanNo, int _borrowerID, ArrayList<Item> _items, int _dueDate, String _type){
-        this.loanNo = _loanNo;
+    public Loan(int _borrowerID, ArrayList<Item> _items, String _dueDate, String _type){
         this.items = _items;
         this.dueDate = _dueDate;
         this.type = _type;
@@ -43,7 +42,7 @@ public class Loan {
         this.items = items_input;
     }
 
-    public void setDueDate(int dueDate_input){
+    public void setDueDate(String dueDate_input){
         this.dueDate = dueDate_input;
     }
     
@@ -51,14 +50,18 @@ public class Loan {
         return this.loanNo;
     }
     
+    
     public ArrayList getItems(){
         return this.items;
     }
     
-    public int getDueDate(){
+    public String getDueDate(){
         return this.dueDate;
     }
 
+    public int getBorrowerID(){
+        return this.borrowerID;
+    }
     public void setType(String type_input){
         this.type = type_input;
     }
@@ -67,6 +70,17 @@ public class Loan {
         return this.type;
     }
    
+    public String loanItemsToString(){
+        ArrayList<Item> items = this.items;
+        StringBuilder sb = new StringBuilder();
+        for (Item item : items){
+            sb.append(item.getIdentifier());
+            sb.append(",");
+        }
+        String result = sb.toString();
+        return result;
+        
+    }
     
 
 }

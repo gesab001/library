@@ -5,6 +5,10 @@
  */
 package core;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author 14400
@@ -52,6 +56,30 @@ public class Item {
         this.status = _status;
     }
  
+       public void updateStatus(String identifier, String status){
+        Library library  = new Library();
+        String message_from_server = "";
+        Connection conn = library.connectToLibraryDatabase("admin", "admin");
+
+        try {
+            String query = "update Item set Identifier = ?, Status = ? where Identifier = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, identifier);
+            stmt.setString(2, status);
+            stmt.setString(3, identifier);
+            stmt.execute();
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+        }
+        System.out.print(message_from_server);
+    }
+       
     public String getIdentifier(){
         return this.identifier;
     }   
@@ -74,6 +102,26 @@ public class Item {
     
     public String getStatus(){
         return this.status;
+    }
+    
+    public String itemToString(){
+            String title = this.getTitle();
+            String author = this.getAuthor();
+            String keywords = this.getKeywords();
+            String type = this.getType();
+            String status = this.getStatus();
+            String item_info = "Title: " + title + "\nAuthor: " + author + "\nKeywords: " + keywords + "\nType: " + type + "\nStatus: " + status;
+            return item_info;
+    }
+    
+    public String checkoutItemToString(){
+            String title = this.getTitle();
+            String author = this.getAuthor();
+            String keywords = this.getKeywords();
+            String type = this.getType();
+            String status = this.getStatus();
+            String item_info = title + " " + author;
+            return item_info;
     }
     
 }

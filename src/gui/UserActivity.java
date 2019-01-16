@@ -154,7 +154,7 @@ public class UserActivity extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(add_borrower_button, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(update_borrower_button, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(delete_borrower_button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,7 +168,7 @@ public class UserActivity extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel3))
-                        .addContainerGap(27, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(surname_input)
                     .addComponent(name_input)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -239,14 +239,14 @@ public class UserActivity extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,8 +263,8 @@ public class UserActivity extends javax.swing.JFrame {
 
     private void delete_borrower_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_borrower_buttonActionPerformed
         // TODO add your handling code here:
-        String identifier = borrower_id_input.getText();
-        String message_confirmation = library.removeItem(identifier);
+        int borrowerID = Integer.parseInt(borrower_id_input.getText());
+        String message_confirmation = library.removeAccount(borrowerID);
         message_from_server_label.setText(message_confirmation);
 
     }//GEN-LAST:event_delete_borrower_buttonActionPerformed
@@ -300,9 +300,9 @@ public class UserActivity extends javax.swing.JFrame {
         String strDateFormat = "dd:mm:y";
         DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
         String formattedDate = dateFormat.format(date);
-        return formattedDate;
-        
+        return formattedDate;       
     }
+    
     private void add_borrower_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_borrower_buttonActionPerformed
         // TODO add your handling code here:
         int borrowerID = Integer.parseInt(borrower_id_input.getText());
