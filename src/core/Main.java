@@ -6,6 +6,7 @@
 package core;
 
 import gui.LoginActivity;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,8 +19,13 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-            Library library = new Library();
-//            Account account = new Account();
+ //           Library library = new Library();
+ //           ArrayList<Borrower> borrower = library.getBorrowerInformation(1111);
+ //           Account account = new Account(10, 6, "01-44-2022", 333);
+  //          System.out.print(account.getAccountNo());
+            
+ //           String result = library.addAccount(account);
+ //           System.out.print(result);
 //            Item item = new Item("asdf", "adsfd", "adfadsf", "asdfad");
 //            library.connectToLibraryDatabase("admin", "admin");
 //           // account.creditAmount(1234, 10);
@@ -29,7 +35,7 @@ public class Main {
 //            account.getBalance(1234);
 //            library.getLoan(3333);
 //            library.addItem(item, "Item");
-            new LoginActivity().setVisible(true);
+             new LoginActivity().setVisible(true);
 //              String message = library.removeItem("computing111");
 //              System.out.print(message);
  //           Item item = library.getItem("apple123");

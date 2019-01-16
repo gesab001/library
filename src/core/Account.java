@@ -18,27 +18,79 @@ import java.util.HashMap;
  * @author 14400
  */
 public class Account  {
-    private int accNo;
+    
+    private final int accNo;
     private int balance;
-    private int dateOfOpening;
+    private final String dateOfOpening;
     private Borrower borrower;
-
+    private Library library;
     
-    
-    public Account(int _accNo, int _balance, int _dateOfOpening, Borrower _borrower){
+    public Account(int _accNo, int _balance, String _dateOfOpening, Borrower _borrower){
         this.accNo = _accNo;
         this.balance = _balance;
         this.dateOfOpening = _dateOfOpening;
         this.borrower = _borrower;
- 
     }
     
-
+    public int getAccountNo(){
+        return this.accNo;
+    }
+    
+    public int getBalance(){
+        return this.balance;
+    }
+    
+    public String getOpeningDate(){
+        return this.dateOfOpening;
+    }
+    
+    public Borrower getBorrower(){
+        return borrower;
+    }
+   
+    public String addBorrower(){
+        library = new Library();
+        Connection conn = library.connectToLibraryDatabase("admin", "admin");
+        String message_from_server = null;
+        int borrowerID = this.borrower.getBorrowerID();
+        String name = this.borrower.getName();
+        String surname = this.borrower.getSurname();
+        String address = this.borrower.getAddress();
+        String email = this.borrower.getEmail();
+        int phone = this.borrower.getPhone();
+        int accountNo = this.borrower.getAccountNo();
+        String username = this.borrower.getUsername();
+        String password = this.borrower.getPassword();
+        try {
+            String query = "insert into Borrower (BorrowerID, Name, Surname, Address, Email, Phone, AccountNo, Username, Password) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, borrowerID);
+            stmt.setString(2, name);
+            stmt.setString(3, surname);
+            stmt.setString(4, address);
+            stmt.setString(5, email);
+            stmt.setInt(6, phone);
+            stmt.setInt(7, accountNo);
+            stmt.setString(8, username);
+            stmt.setString(9, password);
+            stmt.execute();
+            message_from_server = "new borrower successfully created";
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+        }
+        return message_from_server;
+    }
     
     public String debitAmount(int accNo, int amount){
         Library library  = new Library();
         Connection conn = library.connectToLibraryDatabase("admin", "admin");
-        int balance = Integer.parseInt(this.getBalance(accNo));
+        int balance = this.setBalance(accNo);
         int newbalance = balance - amount;
         try {
             String query = "update Account set Balance= " + newbalance + " where AccountNo = (?)";
@@ -59,7 +111,7 @@ public class Account  {
     public String creditAmount(int accNo, int amount){
         Library library  = new Library();
         Connection conn = library.connectToLibraryDatabase("admin", "admin");
-        int balance = Integer.parseInt(this.getBalance(accNo));
+        int balance = this.setBalance(accNo);
         int newbalance = balance + amount;
         try {
             String query = "update Account set Balance= " + newbalance + " where AccountNo = (?)";
@@ -77,8 +129,10 @@ public class Account  {
         return "successfully credited amount";
         
     }
+
+
     
-    public String getBalance(int accNo){
+    public int setBalance(int accNo){
         Library library  = new Library();
         Connection conn = library.connectToLibraryDatabase("admin", "admin");
         String balance = null;
@@ -86,8 +140,8 @@ public class Account  {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from Account where AccountNo = " + accNo);
             while(rs.next())  {     
-                balance = rs.getString("Balance");
-                System.out.print(rs.getString("Balance"));
+                this.balance = Integer.parseInt(rs.getString("Balance"));
+                //System.out.print(rs.getString("Balance"));
             }
             
             conn.close();           
@@ -98,7 +152,7 @@ public class Account  {
           System.out.println("SQLState: " + ex.getSQLState());
           System.out.println("VendorError: " + ex.getErrorCode());
         }
-        return balance;
+        return this.balance;
     }
     
     public HashMap getAccountDetails(int accountNo){
@@ -131,5 +185,8 @@ public class Account  {
         hashmap.put(accountNo, accountDetails);
         return hashmap;
     }
+    
+ 
+    
     
 }
