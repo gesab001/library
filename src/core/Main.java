@@ -35,8 +35,8 @@ public class Main {
 //            account.getBalance(1234);
 //            library.getLoan(3333);
 //            library.addItem(item, "Item");
-//             new LoginActivity().setVisible(true);
-            new Checkout().setVisible(true);
+             new LoginActivity().setVisible(true);
+   //         new CheckIn().setVisible(true);
 //              String message = library.removeItem("computing111");
 //              System.out.print(message);
  //           Item item = library.getItem("apple123");

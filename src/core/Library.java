@@ -208,6 +208,43 @@ public class Library {
         }
         return item;
     }
+    
+    public ArrayList getItems(String keyword){
+        String message_from_server = null;
+        Connection conn = this.connectToLibraryDatabase("admin", "admin");
+        ArrayList<Item> itemslist = new ArrayList<Item>(){};
+        try {
+            String query = "select * from Item where Identifier=?, Title=?, Keywords=?, Type=?, Status=?" ;
+            PreparedStatement stmt = conn.prepareStatement(query);
+           // stmt.setString(1, identifier);
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next() == false){
+                return null;
+            } else{
+                do {
+                String identifier = rs.getString("Identifier".toString());
+                String title = rs.getString("Title").toString();
+                String author = rs.getString("Author").toString();
+                String keywords = rs.getString("Keywords").toString();
+                String type = rs.getString("Type").toString();
+                String status = rs.getString("Status").toString();
+                item = new Item(identifier, title, author, keywords, type, status);
+                itemslist.add(item);
+                } while(rs.next()); 
+            }
+            
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+          System.out.print(message_from_server);
+        }
+        return itemslist;
+    }
 //    
 //    public Borrower getAccountBorrowerInformation(int borrowerID){
 //        Account account = null;

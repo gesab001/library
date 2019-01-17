@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author 14400
  */
-public class CheckIn extends javax.swing.JFrame {
+public class SearchActivity extends javax.swing.JFrame {
 
     Library library = new Library();
     ArrayList<Item> itemlist = new ArrayList<Item>(){};
@@ -27,7 +27,7 @@ public class CheckIn extends javax.swing.JFrame {
     /**
      * Creates new form ItemsActivity
      */
-    public CheckIn() {
+    public SearchActivity() {
         initComponents();
         borrower_panel.setVisible(false);
     }
@@ -42,7 +42,7 @@ public class CheckIn extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        checkin_complete_dialog = new javax.swing.JDialog();
+        checkout_complete_dialog = new javax.swing.JDialog();
         jLabel13 = new javax.swing.JLabel();
         ok_complete_button = new javax.swing.JButton();
         borrower_panel = new javax.swing.JPanel();
@@ -76,22 +76,25 @@ public class CheckIn extends javax.swing.JFrame {
         item_id_input = new javax.swing.JTextField();
         add_item_button = new javax.swing.JButton();
         item_doesnt_exist = new javax.swing.JLabel();
-        return_items_button = new javax.swing.JButton();
+        cancel_button = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        finish_checkout_button = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         find_item = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         checkout_items_display = new javax.swing.JTextArea();
         checkout_items = new javax.swing.JScrollPane();
         item_display = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
         total_items_display = new javax.swing.JLabel();
         onloan_item_message = new javax.swing.JLabel();
         error_borrower_id = new javax.swing.JLabel();
-        menu_button = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        checkin_complete_dialog.setSize(new java.awt.Dimension(400, 200));
+        checkout_complete_dialog.setSize(new java.awt.Dimension(400, 200));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel13.setText("items successfully returned");
+        jLabel13.setText("checkout complete");
 
         ok_complete_button.setText("OK");
         ok_complete_button.addActionListener(new java.awt.event.ActionListener() {
@@ -100,23 +103,23 @@ public class CheckIn extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout checkin_complete_dialogLayout = new javax.swing.GroupLayout(checkin_complete_dialog.getContentPane());
-        checkin_complete_dialog.getContentPane().setLayout(checkin_complete_dialogLayout);
-        checkin_complete_dialogLayout.setHorizontalGroup(
-            checkin_complete_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(checkin_complete_dialogLayout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addGroup(checkin_complete_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, checkin_complete_dialogLayout.createSequentialGroup()
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, checkin_complete_dialogLayout.createSequentialGroup()
+        javax.swing.GroupLayout checkout_complete_dialogLayout = new javax.swing.GroupLayout(checkout_complete_dialog.getContentPane());
+        checkout_complete_dialog.getContentPane().setLayout(checkout_complete_dialogLayout);
+        checkout_complete_dialogLayout.setHorizontalGroup(
+            checkout_complete_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(checkout_complete_dialogLayout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE)
+                .addGroup(checkout_complete_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, checkout_complete_dialogLayout.createSequentialGroup()
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, checkout_complete_dialogLayout.createSequentialGroup()
                         .addComponent(ok_complete_button)
-                        .addGap(171, 171, 171))))
+                        .addGap(170, 170, 170))))
         );
-        checkin_complete_dialogLayout.setVerticalGroup(
-            checkin_complete_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(checkin_complete_dialogLayout.createSequentialGroup()
+        checkout_complete_dialogLayout.setVerticalGroup(
+            checkout_complete_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(checkout_complete_dialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -289,7 +292,7 @@ public class CheckIn extends javax.swing.JFrame {
                 .addComponent(password_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(message_from_server_label, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(borrower_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_borrower_button)
                     .addComponent(update_borrower_button)
@@ -297,14 +300,12 @@ public class CheckIn extends javax.swing.JFrame {
         );
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("RETURN ITEMS");
+        jLabel7.setText("CHECK OUT ITEMS");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setEnabled(false);
 
         jLabel9.setText("Item ID");
-
-        item_id_input.setText("apple123");
 
         add_item_button.setText("add item");
         add_item_button.addActionListener(new java.awt.event.ActionListener() {
@@ -315,14 +316,23 @@ public class CheckIn extends javax.swing.JFrame {
 
         item_doesnt_exist.setForeground(new java.awt.Color(255, 0, 51));
 
-        return_items_button.setText("RETURN ITEMS");
-        return_items_button.addActionListener(new java.awt.event.ActionListener() {
+        cancel_button.setText("cancel");
+        cancel_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                return_items_buttonActionPerformed(evt);
+                cancel_buttonActionPerformed(evt);
             }
         });
 
-        jLabel12.setText("Items to return");
+        jButton3.setText("delete");
+
+        finish_checkout_button.setText("finish");
+        finish_checkout_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finish_checkout_buttonActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Items to checkout");
 
         find_item.setText("find item");
         find_item.addActionListener(new java.awt.event.ActionListener() {
@@ -339,6 +349,8 @@ public class CheckIn extends javax.swing.JFrame {
         item_display.setRows(5);
         checkout_items.setViewportView(item_display);
 
+        jLabel11.setText("Total items:");
+
         total_items_display.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         onloan_item_message.setForeground(new java.awt.Color(255, 0, 0));
@@ -350,33 +362,44 @@ public class CheckIn extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(finish_checkout_button, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(item_doesnt_exist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(item_id_input, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(find_item, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(error_borrower_id, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(return_items_button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(checkout_items)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(total_items_display, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(add_item_button)
-                                .addGap(31, 31, 31)
-                                .addComponent(onloan_item_message, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(onloan_item_message))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(56, 56, 56)
+                                .addComponent(total_items_display)
+                                .addGap(18, 18, 18)
+                                .addComponent(error_borrower_id, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(checkout_items)
+                    .addContainerGap()))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,32 +412,35 @@ public class CheckIn extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(item_id_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(find_item))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(checkout_items, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(onloan_item_message, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_item_button))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(total_items_display, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(error_borrower_id)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_item_button)
+                    .addComponent(onloan_item_message))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(return_items_button, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(total_items_display)
+                    .addComponent(error_borrower_id))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancel_button)
+                    .addComponent(jButton3)
+                    .addComponent(finish_checkout_button)))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(79, 79, 79)
+                    .addComponent(checkout_items, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(374, Short.MAX_VALUE)))
         );
 
-        jLabel12.getAccessibleContext().setAccessibleName("Items to return");
-
-        menu_button.setText("MENU");
-        menu_button.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("MENU");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_buttonActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -428,22 +454,22 @@ public class CheckIn extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(borrower_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(menu_button)
-                        .addGap(210, 210, 210)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(150, 150, 150))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(menu_button))
-                .addGap(7, 7, 7)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(borrower_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -571,6 +597,28 @@ public class CheckIn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_username_inputActionPerformed
 
+    private void add_item_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_item_buttonActionPerformed
+        // TODO add your handling code here:
+        error_borrower_id.setText("");
+        if ("OUT".equals(item.getStatus())){
+            
+            onloan_item_message.setText("cannot add: item is on loan");
+        }
+        else if ("RESERVE".equals(item.getStatus())){
+            onloan_item_message.setText("cannot add: item has been reserved");
+
+        }
+        else {
+            System.out.print(item.getStatus());
+            itemlist.add(item);
+            checkout_items_display.append(item.checkoutItemToString()+"\n");
+            int totalItems = itemlist.size();
+            total_items_display.setText(Integer.toString(totalItems));
+        }
+
+        
+    }//GEN-LAST:event_add_item_buttonActionPerformed
+
 //    private String getDueDate(){
 //      int loanPeriod = 0;
 //        if (item.getType()=="book"){
@@ -612,20 +660,55 @@ public class CheckIn extends javax.swing.JFrame {
         return duedate;
     }
     
-    private void ok_complete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_complete_buttonActionPerformed
+    private void finish_checkout_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finish_checkout_buttonActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        checkin_complete_dialog.setVisible(false);
-        new MenuActivity().setVisible(true);
-    }//GEN-LAST:event_ok_complete_buttonActionPerformed
+
+        //initialize due date
+        if ("".equals(borrower_id_input.getText())){
+            error_borrower_id.setText("please enter valid borrower_id");
+        }
+
+        else if (itemlist.isEmpty()){
+            error_borrower_id.setText("error: no items  to check out");
+        }
+        else{
+            int borrower_id = Integer.parseInt(borrower_id_input.getText());
+            ArrayList<Borrower> borrowerlist = library.getBorrowerInformation(borrower_id);
+            if (borrowerlist.size()==0){
+                error_borrower_id.setText("borrower account doesn't exist");
+            }
+            else{
+                String duedate = "";
+                try {
+                    duedate = this.getDueDate();
+                } catch (ParseException ex) {
+                    Logger.getLogger(SearchActivity.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                //create new Loan         //add items and borrower to loan
+                Library library = new Library();
+                Loan loan = new Loan(borrower_id, itemlist, duedate, "Loan");
+                library.addLoan(loan);
+
+
+                //change status to on loan
+                for (Item item : itemlist){
+                    item.updateStatus(item.getIdentifier(), "OUT");
+                }
+                checkout_complete_dialog.setVisible(true);
+            }
+        }
+        
+        
+    }//GEN-LAST:event_finish_checkout_buttonActionPerformed
 
     private void find_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_itemActionPerformed
         // TODO add your handling code here:
-        // TODO add your handling code here:
+               // TODO add your handling code here:
         item_display.setText("");
         item_doesnt_exist.setText("");
         onloan_item_message.setText("");
-
+        
         String item_id = item_id_input.getText();
         System.out.print(item_id);
         item = library.getItem(item_id);
@@ -636,55 +719,36 @@ public class CheckIn extends javax.swing.JFrame {
         }else{
             item_doesnt_exist_message.setText("");
             String item_info = item.itemToString();
-            //            String title = item.getTitle();
-            //            String author = item.getAuthor();
-            //            String keywords = item.getKeywords();
-            //            String type = item.getType();
-            //            String status = item.getStatus();
-            //            String item_info = "Title: " + title + "\nAuthor: " + author + "\nKeywords: " + keywords + "\nType: " + type + "\nStatus: " + status;
+//            String title = item.getTitle();
+//            String author = item.getAuthor();
+//            String keywords = item.getKeywords();
+//            String type = item.getType();
+//            String status = item.getStatus();
+//            String item_info = "Title: " + title + "\nAuthor: " + author + "\nKeywords: " + keywords + "\nType: " + type + "\nStatus: " + status;
             item_display.setText(item_info);
-
+            
         }
     }//GEN-LAST:event_find_itemActionPerformed
 
-    private void return_items_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_return_items_buttonActionPerformed
+    private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
         // TODO add your handling code here:
+        itemlist = new ArrayList<Item>(){};
+        checkout_items_display.setText("");
+        total_items_display.setText("");
+    }//GEN-LAST:event_cancel_buttonActionPerformed
 
-
-        if (itemlist.isEmpty()){
-            error_borrower_id.setText("error: no items  to check out");
-        }
-        else{
-
-                //change status to available
-                for (Item item : itemlist){
-                    item.updateStatus(item.getIdentifier(), "IN");
-                }
-                checkin_complete_dialog.setVisible(true);
-            
-        }
-
-    }//GEN-LAST:event_return_items_buttonActionPerformed
-
-    private void add_item_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_item_buttonActionPerformed
-        // TODO add your handling code here:
-        error_borrower_id.setText("");
-        if ("IN".equals(item.getStatus())){
-            onloan_item_message.setText("cannot add: item is already IN");         
-        }
-        else{
-            itemlist.add(item);
-            checkout_items_display.append(item.checkoutItemToString()+"\n");
-            int totalItems = itemlist.size();
-            total_items_display.setText("TOTAL ITEMS TO RETURN: " + Integer.toString(totalItems));
-        }
-    }//GEN-LAST:event_add_item_buttonActionPerformed
-
-    private void menu_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_buttonActionPerformed
+    private void ok_complete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_complete_buttonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
+        checkout_complete_dialog.setVisible(false);
         new MenuActivity().setVisible(true);
-    }//GEN-LAST:event_menu_buttonActionPerformed
+    }//GEN-LAST:event_ok_complete_buttonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+                this.setVisible(false);
+        new MenuActivity().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -703,13 +767,13 @@ public class CheckIn extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -729,11 +793,9 @@ public class CheckIn extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckIn().setVisible(true);
-                
+                new SearchActivity().setVisible(true);
             }
         });
     }
@@ -746,20 +808,25 @@ public class CheckIn extends javax.swing.JFrame {
     private javax.swing.JTextField borrower_id_input;
     private javax.swing.JPanel borrower_panel;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton cancel_button;
     private javax.swing.JButton check_member_exist_button;
-    private javax.swing.JDialog checkin_complete_dialog;
+    private javax.swing.JDialog checkout_complete_dialog;
     private javax.swing.JScrollPane checkout_items;
     private javax.swing.JTextArea checkout_items_display;
     private javax.swing.JButton delete_borrower_button;
     private javax.swing.JTextField email_input;
     private javax.swing.JLabel error_borrower_id;
     private javax.swing.JButton find_item;
+    private javax.swing.JButton finish_checkout_button;
     private javax.swing.JTextArea item_display;
     private javax.swing.JLabel item_doesnt_exist;
     private javax.swing.JLabel item_doesnt_exist_message;
     private javax.swing.JTextField item_id_input;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -772,14 +839,12 @@ public class CheckIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton menu_button;
     private javax.swing.JLabel message_from_server_label;
     private javax.swing.JTextField name_input;
     private javax.swing.JButton ok_complete_button;
     private javax.swing.JLabel onloan_item_message;
     private javax.swing.JTextField password_input;
     private javax.swing.JTextField phone_input;
-    private javax.swing.JButton return_items_button;
     private javax.swing.JTextField surname_input;
     private javax.swing.JLabel total_items_display;
     private javax.swing.JButton update_borrower_button;

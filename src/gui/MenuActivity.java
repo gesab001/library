@@ -31,7 +31,7 @@ public class MenuActivity extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        reserve_activity_button = new javax.swing.JButton();
         return_button = new javax.swing.JButton();
         item_activity_button = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -53,9 +53,14 @@ public class MenuActivity extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton2.setText("RESERVE");
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        reserve_activity_button.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        reserve_activity_button.setText("RESERVE");
+        reserve_activity_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        reserve_activity_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reserve_activity_buttonActionPerformed(evt);
+            }
+        });
 
         return_button.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         return_button.setText("RETURN");
@@ -117,7 +122,7 @@ public class MenuActivity extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reserve_activity_button, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(item_activity_button, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +147,7 @@ public class MenuActivity extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reserve_activity_button, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(return_button, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
@@ -215,6 +220,12 @@ public class MenuActivity extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_return_buttonActionPerformed
 
+    private void reserve_activity_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserve_activity_buttonActionPerformed
+        // TODO add your handling code here:
+        new ReserveActivity().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_reserve_activity_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,7 +265,6 @@ public class MenuActivity extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton item_activity_button;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -265,6 +275,7 @@ public class MenuActivity extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton reserve_activity_button;
     private javax.swing.JButton return_button;
     private javax.swing.JButton user_activity_button;
     // End of variables declaration//GEN-END:variables
