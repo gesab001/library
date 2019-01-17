@@ -35,11 +35,11 @@ public class MenuActivity extends javax.swing.JFrame {
         return_button = new javax.swing.JButton();
         item_activity_button = new javax.swing.JButton();
         search_activity_button = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        overdue_Activity = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         user_activity_button = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        renewActivity = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
 
@@ -85,8 +85,13 @@ public class MenuActivity extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton6.setText("OVERDUE");
+        overdue_Activity.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        overdue_Activity.setText("OVERDUE");
+        overdue_Activity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                overdue_ActivityActionPerformed(evt);
+            }
+        });
 
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton7.setText("CHECKOUT");
@@ -108,8 +113,13 @@ public class MenuActivity extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton9.setText("RENEW");
+        renewActivity.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        renewActivity.setText("RENEW");
+        renewActivity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                renewActivityActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,7 +128,7 @@ public class MenuActivity extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(renewActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reserve_activity_button, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(item_activity_button, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
@@ -131,7 +141,7 @@ public class MenuActivity extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(return_button, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(overdue_Activity, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(40, 40, 40))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -150,8 +160,8 @@ public class MenuActivity extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(search_activity_button, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(overdue_Activity, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(renewActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(user_activity_button, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -229,6 +239,18 @@ public class MenuActivity extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_search_activity_buttonActionPerformed
 
+    private void overdue_ActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_overdue_ActivityActionPerformed
+        // TODO add your handling code here:
+        new OverdueActivity().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_overdue_ActivityActionPerformed
+
+    private void renewActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renewActivityActionPerformed
+        // TODO add your handling code here:
+        new RenewActivity().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_renewActivityActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,15 +290,15 @@ public class MenuActivity extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton item_activity_button;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton overdue_Activity;
+    private javax.swing.JButton renewActivity;
     private javax.swing.JButton reserve_activity_button;
     private javax.swing.JButton return_button;
     private javax.swing.JButton search_activity_button;

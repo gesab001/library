@@ -19,15 +19,16 @@ import javax.swing.JOptionPane;
  *
  * @author 14400
  */
-public class Checkout extends javax.swing.JFrame {
+public class RenewActivity extends javax.swing.JFrame {
 
     Library library = new Library();
+    Loan loan = new Loan(){};
     ArrayList<Item> itemlist = new ArrayList<Item>(){};
     Item item;
     /**
      * Creates new form ItemsActivity
      */
-    public Checkout() {
+    public RenewActivity() {
         initComponents();
     }
 
@@ -76,18 +77,17 @@ public class Checkout extends javax.swing.JFrame {
         add_item_button = new javax.swing.JButton();
         item_doesnt_exist = new javax.swing.JLabel();
         cancel_button = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         finish_checkout_button = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         find_item = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         checkout_items_display = new javax.swing.JTextArea();
-        checkout_items = new javax.swing.JScrollPane();
-        item_display = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
         total_items_display = new javax.swing.JLabel();
         onloan_item_message = new javax.swing.JLabel();
         error_borrower_id = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        item_display = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
         checkout_complete_dialog.setSize(new java.awt.Dimension(400, 200));
@@ -291,7 +291,7 @@ public class Checkout extends javax.swing.JFrame {
                 .addComponent(password_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(message_from_server_label, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_borrower_button)
                     .addComponent(update_borrower_button)
@@ -299,7 +299,7 @@ public class Checkout extends javax.swing.JFrame {
         );
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("CHECK OUT ITEMS");
+        jLabel7.setText("RENEW ITEMS");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setEnabled(false);
@@ -322,16 +322,14 @@ public class Checkout extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("delete");
-
-        finish_checkout_button.setText("finish");
+        finish_checkout_button.setText("RENEW ITEMS");
         finish_checkout_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 finish_checkout_buttonActionPerformed(evt);
             }
         });
 
-        jLabel12.setText("Items to checkout");
+        jLabel12.setText("Items to renew");
 
         find_item.setText("find item");
         find_item.addActionListener(new java.awt.event.ActionListener() {
@@ -344,10 +342,6 @@ public class Checkout extends javax.swing.JFrame {
         checkout_items_display.setRows(5);
         jScrollPane2.setViewportView(checkout_items_display);
 
-        item_display.setColumns(20);
-        item_display.setRows(5);
-        checkout_items.setViewportView(item_display);
-
         jLabel11.setText("Total items:");
 
         total_items_display.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -357,36 +351,39 @@ public class Checkout extends javax.swing.JFrame {
         error_borrower_id.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         error_borrower_id.setForeground(new java.awt.Color(255, 0, 0));
 
+        item_display.setColumns(20);
+        item_display.setRows(5);
+        jScrollPane1.setViewportView(item_display);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(finish_checkout_button, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(item_doesnt_exist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(item_id_input, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(find_item, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(finish_checkout_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(add_item_button)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(onloan_item_message))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(56, 56, 56)
                                 .addComponent(total_items_display)
@@ -394,11 +391,6 @@ public class Checkout extends javax.swing.JFrame {
                                 .addComponent(error_borrower_id, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(checkout_items)
-                    .addContainerGap()))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,6 +404,8 @@ public class Checkout extends javax.swing.JFrame {
                     .addComponent(item_id_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(find_item))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_item_button)
                     .addComponent(onloan_item_message))
@@ -427,13 +421,7 @@ public class Checkout extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel_button)
-                    .addComponent(jButton3)
                     .addComponent(finish_checkout_button)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(79, 79, 79)
-                    .addComponent(checkout_items, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(374, Short.MAX_VALUE)))
         );
 
         jButton1.setText("MENU");
@@ -668,7 +656,7 @@ public class Checkout extends javax.swing.JFrame {
         Calendar cal = Calendar.getInstance();
         cal.setTime(dateFormat.parse(currentDate));
         cal.add( Calendar.DATE, loanPeriod );
-        String duedate = dateFormat.format(cal.getTime());
+        String duedate = cal.getTime().toString();
         return duedate;
     }
     
@@ -694,7 +682,7 @@ public class Checkout extends javax.swing.JFrame {
                 try {
                     duedate = this.getDueDate();
                 } catch (ParseException ex) {
-                    Logger.getLogger(Checkout.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RenewActivity.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 //create new Loan         //add items and borrower to loan
@@ -738,6 +726,10 @@ public class Checkout extends javax.swing.JFrame {
 //            String status = item.getStatus();
 //            String item_info = "Title: " + title + "\nAuthor: " + author + "\nKeywords: " + keywords + "\nType: " + type + "\nStatus: " + status;
             item_display.setText(item_info);
+            String dueDate = loan.getDueDateForRenewingItem(item.getIdentifier());
+            //Date date = new SimpleDateFormat("dd mm")
+            
+            item_display.append("\nDue Date: "  + dueDate);
             
         }
     }//GEN-LAST:event_find_itemActionPerformed
@@ -779,14 +771,22 @@ public class Checkout extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RenewActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RenewActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RenewActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RenewActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -799,7 +799,7 @@ public class Checkout extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Checkout().setVisible(true);
+                new RenewActivity().setVisible(true);
             }
         });
     }
@@ -814,7 +814,6 @@ public class Checkout extends javax.swing.JFrame {
     private javax.swing.JButton cancel_button;
     private javax.swing.JButton check_member_exist_button;
     private javax.swing.JDialog checkout_complete_dialog;
-    private javax.swing.JScrollPane checkout_items;
     private javax.swing.JTextArea checkout_items_display;
     private javax.swing.JButton delete_borrower_button;
     private javax.swing.JTextField email_input;
@@ -826,7 +825,6 @@ public class Checkout extends javax.swing.JFrame {
     private javax.swing.JLabel item_doesnt_exist_message;
     private javax.swing.JTextField item_id_input;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -842,6 +840,7 @@ public class Checkout extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel message_from_server_label;
     private javax.swing.JTextField name_input;

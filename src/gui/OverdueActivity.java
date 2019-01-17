@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,15 +20,18 @@ import javax.swing.JOptionPane;
  *
  * @author 14400
  */
-public class Checkout extends javax.swing.JFrame {
+public class OverdueActivity extends javax.swing.JFrame {
 
     Library library = new Library();
+
     ArrayList<Item> itemlist = new ArrayList<Item>(){};
     Item item;
-    /**
+    HashMap<Integer, ArrayList> accountDetails = new HashMap<Integer, ArrayList>();  
+    Account account = new Account(){};
+    int balance = 0;/**
      * Creates new form ItemsActivity
      */
-    public Checkout() {
+    public OverdueActivity() {
         initComponents();
     }
 
@@ -89,6 +93,11 @@ public class Checkout extends javax.swing.JFrame {
         onloan_item_message = new javax.swing.JLabel();
         error_borrower_id = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        fine_amount = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         checkout_complete_dialog.setSize(new java.awt.Dimension(400, 200));
 
@@ -291,7 +300,7 @@ public class Checkout extends javax.swing.JFrame {
                 .addComponent(password_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(message_from_server_label, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_borrower_button)
                     .addComponent(update_borrower_button)
@@ -299,7 +308,7 @@ public class Checkout extends javax.swing.JFrame {
         );
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("CHECK OUT ITEMS");
+        jLabel7.setText("ACCOUNT BALANCE");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setEnabled(false);
@@ -361,44 +370,40 @@ public class Checkout extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(finish_checkout_button, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(item_doesnt_exist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(item_id_input, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(find_item, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(add_item_button)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(find_item, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
                                 .addComponent(onloan_item_message))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(56, 56, 56)
                                 .addComponent(total_items_display)
                                 .addGap(18, 18, 18)
-                                .addComponent(error_borrower_id, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(error_borrower_id, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(add_item_button))
+                        .addGap(0, 27, Short.MAX_VALUE))
+                    .addComponent(checkout_items))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(checkout_items)
-                    .addContainerGap()))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,14 +416,16 @@ public class Checkout extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(item_id_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(find_item))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(checkout_items, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add_item_button)
-                    .addComponent(onloan_item_message))
+                .addComponent(onloan_item_message)
+                .addGap(37, 37, 37)
+                .addComponent(add_item_button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -429,11 +436,6 @@ public class Checkout extends javax.swing.JFrame {
                     .addComponent(cancel_button)
                     .addComponent(jButton3)
                     .addComponent(finish_checkout_button)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(79, 79, 79)
-                    .addComponent(checkout_items, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(374, Short.MAX_VALUE)))
         );
 
         jButton1.setText("MENU");
@@ -442,6 +444,50 @@ public class Checkout extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        fine_amount.setText("TOTAL FINES TO PAY:");
+
+        jLabel15.setText("Pay amount:");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Pay");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextField1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fine_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(fine_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(0, 22, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -453,7 +499,9 @@ public class Checkout extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -463,14 +511,17 @@ public class Checkout extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -592,6 +643,12 @@ public class Checkout extends javax.swing.JFrame {
                 accountNo_input.setText(Integer.toString(borrower.getAccountNo()));
                 username_input.setText(borrower.getUsername());
                 password_input.setText(borrower.getPassword());
+                accountDetails = account.getAccountDetails(borrower.getAccountNo()); //Hashmp contains account number and 
+                //display balance
+                ArrayList accountInfo = accountDetails.get(borrower.getAccountNo());
+                balance = Integer.parseInt(accountInfo.get(0).toString());
+                fine_amount.setText("TOTAL FINES TO PAY: $" + Integer.toString(balance));
+                
 
             }
         }
@@ -605,31 +662,6 @@ public class Checkout extends javax.swing.JFrame {
     private void username_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_inputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_username_inputActionPerformed
-
-    private void add_item_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_item_buttonActionPerformed
-        // TODO add your handling code here:
-        error_borrower_id.setText("");
-        if ("OUT".equals(item.getStatus())){
-            
-            onloan_item_message.setText("cannot add: item is on loan");
-        }
-        else if ("RESERVE".equals(item.getStatus())){
-            onloan_item_message.setText("cannot add: item has been reserved");
-
-        }
-        else if (itemlist.contains(item)){
-            onloan_item_message.setText("cannot add: item is already added");
-        }
-        else {
-            System.out.print(item.getStatus());
-            itemlist.add(item);
-            checkout_items_display.append(item.checkoutItemToString()+"\n");
-            int totalItems = itemlist.size();
-            total_items_display.setText(Integer.toString(totalItems));
-        }
-
-        
-    }//GEN-LAST:event_add_item_buttonActionPerformed
 
 //    private String getDueDate(){
 //      int loanPeriod = 0;
@@ -658,17 +690,17 @@ public class Checkout extends javax.swing.JFrame {
     private String getDueDate() throws ParseException{
         String currentDate = getDateNow();
          int loanPeriod = 0;
-        if (item.getType().toLowerCase()=="book"){
+        if (item.getType()=="book"){
            loanPeriod=21;
         }
         else{
-            loanPeriod = 2;
+            loanPeriod = 14;
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd" );
         Calendar cal = Calendar.getInstance();
         cal.setTime(dateFormat.parse(currentDate));
         cal.add( Calendar.DATE, loanPeriod );
-        String duedate = dateFormat.format(cal.getTime());
+        String duedate = cal.getTime().toString();
         return duedate;
     }
     
@@ -694,7 +726,7 @@ public class Checkout extends javax.swing.JFrame {
                 try {
                     duedate = this.getDueDate();
                 } catch (ParseException ex) {
-                    Logger.getLogger(Checkout.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(OverdueActivity.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 //create new Loan         //add items and borrower to loan
@@ -713,34 +745,6 @@ public class Checkout extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_finish_checkout_buttonActionPerformed
-
-    private void find_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_itemActionPerformed
-        // TODO add your handling code here:
-               // TODO add your handling code here:
-        item_display.setText("");
-        item_doesnt_exist.setText("");
-        onloan_item_message.setText("");
-        
-        String item_id = item_id_input.getText();
-        System.out.print(item_id);
-        item = library.getItem(item_id);
-        if (item==null){
-            item_doesnt_exist.setText("item doesn't exist");
-            item_display.setText("");
-
-        }else{
-            item_doesnt_exist_message.setText("");
-            String item_info = item.itemToString();
-//            String title = item.getTitle();
-//            String author = item.getAuthor();
-//            String keywords = item.getKeywords();
-//            String type = item.getType();
-//            String status = item.getStatus();
-//            String item_info = "Title: " + title + "\nAuthor: " + author + "\nKeywords: " + keywords + "\nType: " + type + "\nStatus: " + status;
-            item_display.setText(item_info);
-            
-        }
-    }//GEN-LAST:event_find_itemActionPerformed
 
     private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
         // TODO add your handling code here:
@@ -762,6 +766,59 @@ public class Checkout extends javax.swing.JFrame {
         new MenuActivity().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void find_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_itemActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        item_display.setText("");
+        item_doesnt_exist.setText("");
+        onloan_item_message.setText("");
+
+        String item_id = item_id_input.getText();
+        System.out.print(item_id);
+        item = library.getItem(item_id);
+        if (item==null){
+            item_doesnt_exist.setText("item doesn't exist");
+            item_display.setText("");
+
+        }else{
+            item_doesnt_exist_message.setText("");
+            String item_info = item.itemToString();
+            //            String title = item.getTitle();
+            //            String author = item.getAuthor();
+            //            String keywords = item.getKeywords();
+            //            String type = item.getType();
+            //            String status = item.getStatus();
+            //            String item_info = "Title: " + title + "\nAuthor: " + author + "\nKeywords: " + keywords + "\nType: " + type + "\nStatus: " + status;
+            item_display.setText(item_info);
+
+        }
+    }//GEN-LAST:event_find_itemActionPerformed
+
+    private void add_item_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_item_buttonActionPerformed
+        // TODO add your handling code here:
+        error_borrower_id.setText("");
+        if ("OUT".equals(item.getStatus())){
+
+            onloan_item_message.setText("cannot add: item is on loan");
+        }
+        else if ("RESERVE".equals(item.getStatus())){
+            onloan_item_message.setText("cannot add: item has been reserved");
+
+        }
+        else {
+            System.out.print(item.getStatus());
+            itemlist.add(item);
+            checkout_items_display.append(item.checkoutItemToString()+"\n");
+            int totalItems = itemlist.size();
+            total_items_display.setText(Integer.toString(totalItems));
+        }
+
+    }//GEN-LAST:event_add_item_buttonActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -779,14 +836,22 @@ public class Checkout extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OverdueActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OverdueActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OverdueActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Checkout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OverdueActivity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -799,7 +864,7 @@ public class Checkout extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Checkout().setVisible(true);
+                new OverdueActivity().setVisible(true);
             }
         });
     }
@@ -820,18 +885,21 @@ public class Checkout extends javax.swing.JFrame {
     private javax.swing.JTextField email_input;
     private javax.swing.JLabel error_borrower_id;
     private javax.swing.JButton find_item;
+    private javax.swing.JLabel fine_amount;
     private javax.swing.JButton finish_checkout_button;
     private javax.swing.JTextArea item_display;
     private javax.swing.JLabel item_doesnt_exist;
     private javax.swing.JLabel item_doesnt_exist_message;
     private javax.swing.JTextField item_id_input;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -842,7 +910,9 @@ public class Checkout extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel message_from_server_label;
     private javax.swing.JTextField name_input;
     private javax.swing.JButton ok_complete_button;

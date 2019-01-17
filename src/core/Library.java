@@ -344,30 +344,31 @@ public class Library {
         int borrowerID = loan.getBorrowerID();
         String duedate = loan.getDueDate();
         String type = loan.getType();
-        String items = loan.loanItemsToString();
-        try {
-            String query = "insert into Loan (Item, DueDate, Type, BorrowerID) values (?, ?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, items  );
-            stmt.setString(2, duedate);
-            stmt.setString(3, type);
-            stmt.setInt(4, borrowerID);
-            stmt.execute();
-                    System.out.print("add loan");
+        ArrayList<Item> items = loan.getItems();
+        for (Item item : items){
+            try {
+                String query = "insert into Loan (Item, DueDate, Type, BorrowerID) values (?, ?, ?, ?)";
+                PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setString(1, item.getIdentifier()  );
+                stmt.setString(2, duedate);
+                stmt.setString(3, type);
+                stmt.setInt(4, borrowerID);
+                stmt.execute();
+                        System.out.print("add loan");
 
-//            message_from_server = "loan successfully created";
-            conn.close();           
-        }
-        catch (SQLException ex) {
-        // handle any errors
-          String exception = ("SQLException: " + ex.getMessage());                 
-          String state = ("SQLState: " + ex.getSQLState());
-          String vendor = ("VendorError: " + ex.getErrorCode());
-          System.out.print(exception + " " + state + " " + vendor);
-        }
-       // return message_from_server;
+    //            message_from_server = "loan successfully created";
+                conn.close();           
+            }
+            catch (SQLException ex) {
+            // handle any errors
+              String exception = ("SQLException: " + ex.getMessage());                 
+              String state = ("SQLState: " + ex.getSQLState());
+              String vendor = ("VendorError: " + ex.getErrorCode());
+              System.out.print(exception + " " + state + " " + vendor);
+            }
+           // return message_from_server;
 
-        
+        }
     }
     
     public HashMap getLoan(int x){

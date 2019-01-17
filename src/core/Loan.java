@@ -5,6 +5,10 @@
  */
 package core;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +22,10 @@ public class Loan {
     String dueDate;
     String type;
     int borrowerID;
+    int renewalLimit;
+    Library library = new Library(){};
     
+    public Loan(){}
     
     public Loan(int _borrowerID, ArrayList<Item> _items, String _dueDate, String _type){
         this.items = _items;
@@ -27,7 +34,13 @@ public class Loan {
         this.borrowerID = _borrowerID;
     }
     
+    public void setRenewalLimit(int limit){
+        this.renewalLimit = limit;
+    }
 
+    public int renewalLimit(){
+        return this.renewalLimit;
+    }
     
     
     public void setBorrower(int borrowerID_input){
@@ -51,7 +64,7 @@ public class Loan {
     }
     
     
-    public ArrayList getItems(){
+    public ArrayList<Item> getItems(){
         return this.items;
     }
     
@@ -59,6 +72,35 @@ public class Loan {
         return this.dueDate;
     }
 
+    public String getDueDateForRenewingItem(String identifier){
+        String message_from_server = null;
+        Connection conn = library.connectToLibraryDatabase("admin", "admin");    
+        try {
+            String query = "select DueDate from Loan where Item='" + identifier + "'" ;
+            PreparedStatement stmt = conn.prepareStatement(query);
+           // stmt.setString(1, identifier);
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next() == false){
+                return null;
+            } else{
+                do {
+                this.dueDate = rs.getString("DueDate").toString();
+                } while(rs.next()); 
+            }
+            
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+          System.out.print(message_from_server);
+        }
+        return this.dueDate;
+    }
+    
     public int getBorrowerID(){
         return this.borrowerID;
     }

@@ -19,11 +19,13 @@ import java.util.HashMap;
  */
 public class Account  {
     
-    private final int accNo;
+    private int accNo;
     private int balance;
-    private final String dateOfOpening;
+    private String dateOfOpening;
     private Borrower borrower;
     private Library library;
+    private int BookLoanLimit;
+    private int MagazineLoanLimit;
     
     public Account(int _accNo, int _balance, String _dateOfOpening, Borrower _borrower){
         this.accNo = _accNo;
@@ -31,6 +33,8 @@ public class Account  {
         this.dateOfOpening = _dateOfOpening;
         this.borrower = _borrower;
     }
+    
+    public Account(){}
     
     public int getAccountNo(){
         return this.accNo;
@@ -62,16 +66,17 @@ public class Account  {
         String username = this.borrower.getUsername();
         String password = this.borrower.getPassword();
         try {
-            String query = "insert into Borrower (Name, Surname, Address, Email, Phone, AccountNo, Username, Password) values (?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "insert into Borrower (BorrowerID, Name, Surname, Address, Email, Phone, AccountNo, Username, Password) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, name);
-            stmt.setString(2, surname);
-            stmt.setString(3, address);
-            stmt.setString(4, email);
-            stmt.setInt(5, phone);
-            stmt.setInt(6, accountNo);
-            stmt.setString(7, username);
-            stmt.setString(8, password);
+            stmt.setInt(1, borrowerID);
+            stmt.setString(2, name);
+            stmt.setString(3, surname);
+            stmt.setString(4, address);
+            stmt.setString(5, email);
+            stmt.setInt(6, phone);
+            stmt.setInt(7, accountNo);
+            stmt.setString(8, username);
+            stmt.setString(9, password);
             stmt.execute();
             message_from_server = "new borrower successfully created";
             conn.close();           
