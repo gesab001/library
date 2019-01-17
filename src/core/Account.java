@@ -62,17 +62,16 @@ public class Account  {
         String username = this.borrower.getUsername();
         String password = this.borrower.getPassword();
         try {
-            String query = "insert into Borrower (BorrowerID, Name, Surname, Address, Email, Phone, AccountNo, Username, Password) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "insert into Borrower (Name, Surname, Address, Email, Phone, AccountNo, Username, Password) values (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, borrowerID);
-            stmt.setString(2, name);
-            stmt.setString(3, surname);
-            stmt.setString(4, address);
-            stmt.setString(5, email);
-            stmt.setInt(6, phone);
-            stmt.setInt(7, accountNo);
-            stmt.setString(8, username);
-            stmt.setString(9, password);
+            stmt.setString(1, name);
+            stmt.setString(2, surname);
+            stmt.setString(3, address);
+            stmt.setString(4, email);
+            stmt.setInt(5, phone);
+            stmt.setInt(6, accountNo);
+            stmt.setString(7, username);
+            stmt.setString(8, password);
             stmt.execute();
             message_from_server = "new borrower successfully created";
             conn.close();           

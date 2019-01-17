@@ -19,7 +19,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
- //           Library library = new Library();
+            Library library = new Library();
  //           ArrayList<Borrower> borrower = library.getBorrowerInformation(1111);
  //           Account account = new Account(10, 6, "01-44-2022", 333);
   //          System.out.print(account.getAccountNo());
@@ -39,8 +39,27 @@ public class Main {
    //         new CheckIn().setVisible(true);
 //              String message = library.removeItem("computing111");
 //              System.out.print(message);
- //           Item item = library.getItem("apple123");
- //          System.out.print(item.getTitle());
+//            Item item = library.getItem("apple123");
+//           System.out.print(item.getTitle());
+//        ArrayList<Item> itemslist = library.getItems("apple");
+//        if (itemslist.isEmpty()){
+//            System.out.print("item doesn't exist");
+//
+//        }else{
+//            for (Item itemfound : itemslist){
+//              String item_info = itemfound.itemToString();
+////            String title = item.getTitle();
+////            String author = item.getAuthor();
+////            String keywords = item.getKeywords();
+////            String type = item.getType();
+////            String status = item.getStatus();
+////            String item_info = "Title: " + title + "\nAuthor: " + author + "\nKeywords: " + keywords + "\nType: " + type + "\nStatus: " + status;
+//              System.out.print(item_info);
+//              System.out.print("\n\n");
+//            }
+//        }
+            
+        
             
                 
 

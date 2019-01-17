@@ -560,30 +560,40 @@ public class Checkout extends javax.swing.JFrame {
     private void check_member_exist_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_member_exist_buttonActionPerformed
         // TODO add your handling code here:
         message_from_server_label.setText("");
-        int borrower_id = Integer.parseInt(borrower_id_input.getText());        
-        ArrayList<Borrower> borrowerlist = library.getBorrowerInformation(borrower_id);
-        if (borrowerlist.size()==0){
-            item_doesnt_exist_message.setText("borrower account doesn't exist");
-            name_input.setText("");
-            surname_input.setText("");
-            address_input.setText("");
-            email_input.setText("");
-            phone_input.setText("");
-            accountNo_input.setText("");
-            username_input.setText("");
-            password_input.setText("");
-        }else{
-            Borrower borrower = borrowerlist.get(0);
-            item_doesnt_exist_message.setText("");
-            name_input.setText(borrower.getName());
-            surname_input.setText(borrower.getSurname());
-            address_input.setText(borrower.getAddress());            
-            email_input.setText(borrower.getEmail());
-            phone_input.setText(Integer.toString(borrower.getPhone()));
-            accountNo_input.setText(Integer.toString(borrower.getAccountNo()));
-            username_input.setText(borrower.getUsername());
-            password_input.setText(borrower.getPassword());
-            
+        String borrowerIDString = borrower_id_input.getText();
+        if ("".equals(borrowerIDString)){
+            message_from_server_label.setText("enter unique borrower ID");
+        }
+        else if (borrowerIDString.matches(".*[a-z].*")) { 
+         // Do something
+          message_from_server_label.setText("borrowerID must only contain numbers");
+        }
+        else{
+            int borrower_id = Integer.parseInt(borrower_id_input.getText());        
+            ArrayList<Borrower> borrowerlist = library.getBorrowerInformation(borrower_id);
+            if (borrowerlist.size()==0){
+                item_doesnt_exist_message.setText("borrower account doesn't exist");
+                name_input.setText("");
+                surname_input.setText("");
+                address_input.setText("");
+                email_input.setText("");
+                phone_input.setText("");
+                accountNo_input.setText("");
+                username_input.setText("");
+                password_input.setText("");
+            }else{
+                Borrower borrower = borrowerlist.get(0);
+                item_doesnt_exist_message.setText("");
+                name_input.setText(borrower.getName());
+                surname_input.setText(borrower.getSurname());
+                address_input.setText(borrower.getAddress());            
+                email_input.setText(borrower.getEmail());
+                phone_input.setText(Integer.toString(borrower.getPhone()));
+                accountNo_input.setText(Integer.toString(borrower.getAccountNo()));
+                username_input.setText(borrower.getUsername());
+                password_input.setText(borrower.getPassword());
+
+            }
         }
 
     }//GEN-LAST:event_check_member_exist_buttonActionPerformed

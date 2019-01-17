@@ -598,6 +598,10 @@ public class ReserveActivity extends javax.swing.JFrame {
             onloan_item_message.setText("cannot add: item is available");
             
         }
+        
+        else if ("RESERVE".equals(item.getStatus())){
+            onloan_item_message.setText("cannot add: item has been reserved");
+        }
         else {
             System.out.print(item.getStatus());
             itemlist.add(item);

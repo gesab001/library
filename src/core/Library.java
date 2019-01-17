@@ -214,12 +214,17 @@ public class Library {
         Connection conn = this.connectToLibraryDatabase("admin", "admin");
         ArrayList<Item> itemslist = new ArrayList<Item>(){};
         try {
-            String query = "select * from Item where Identifier=?, Title=?, Keywords=?, Type=?, Status=?" ;
+            System.out.print(keyword);
+            String query = "select * from Item  where Title like '%" + keyword + "%'" + "OR Author like '% " + keyword + "%'" + "OR Keywords like '% " + keyword + "%'";
             PreparedStatement stmt = conn.prepareStatement(query);
-           // stmt.setString(1, identifier);
+            //stmt.setString(1, "%" + keyword + "%");
+//            stmt.setString(2, keyword);
+//            stmt.setString(3, keyword);
+//            stmt.setString(4, keyword);
+//            stmt.setString(5, keyword);
             ResultSet rs = stmt.executeQuery(query);
             if (rs.next() == false){
-                return null;
+                itemslist = new ArrayList<Item>(){};
             } else{
                 do {
                 String identifier = rs.getString("Identifier".toString());

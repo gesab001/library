@@ -34,7 +34,7 @@ public class MenuActivity extends javax.swing.JFrame {
         reserve_activity_button = new javax.swing.JButton();
         return_button = new javax.swing.JButton();
         item_activity_button = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        search_activity_button = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -55,7 +55,6 @@ public class MenuActivity extends javax.swing.JFrame {
 
         reserve_activity_button.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         reserve_activity_button.setText("RESERVE");
-        reserve_activity_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         reserve_activity_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reserve_activity_buttonActionPerformed(evt);
@@ -64,7 +63,6 @@ public class MenuActivity extends javax.swing.JFrame {
 
         return_button.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         return_button.setText("RETURN");
-        return_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         return_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 return_buttonActionPerformed(evt);
@@ -73,24 +71,25 @@ public class MenuActivity extends javax.swing.JFrame {
 
         item_activity_button.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         item_activity_button.setText("ITEMS");
-        item_activity_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         item_activity_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 item_activity_buttonActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton5.setText("SEARCH");
-        jButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        search_activity_button.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        search_activity_button.setText("SEARCH");
+        search_activity_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_activity_buttonActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton6.setText("OVERDUE");
-        jButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton7.setText("CHECKOUT");
-        jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -103,7 +102,6 @@ public class MenuActivity extends javax.swing.JFrame {
 
         user_activity_button.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         user_activity_button.setText("USERS");
-        user_activity_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         user_activity_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 user_activity_buttonActionPerformed(evt);
@@ -112,7 +110,6 @@ public class MenuActivity extends javax.swing.JFrame {
 
         jButton9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton9.setText("RENEW");
-        jButton9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,7 +127,7 @@ public class MenuActivity extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(search_activity_button, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(65, 65, 65)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(return_button, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,7 +149,7 @@ public class MenuActivity extends javax.swing.JFrame {
                     .addComponent(return_button, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_activity_button, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
@@ -226,6 +223,12 @@ public class MenuActivity extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_reserve_activity_buttonActionPerformed
 
+    private void search_activity_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_activity_buttonActionPerformed
+        // TODO add your handling code here:
+        new SearchActivity().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_search_activity_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -265,7 +268,6 @@ public class MenuActivity extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton item_activity_button;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
@@ -277,6 +279,7 @@ public class MenuActivity extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton reserve_activity_button;
     private javax.swing.JButton return_button;
+    private javax.swing.JButton search_activity_button;
     private javax.swing.JButton user_activity_button;
     // End of variables declaration//GEN-END:variables
 }

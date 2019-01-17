@@ -120,6 +120,8 @@ public class UserActivity extends javax.swing.JFrame {
 
         item_doesnt_exist_message.setForeground(new java.awt.Color(255, 0, 51));
 
+        message_from_server_label.setForeground(new java.awt.Color(255, 51, 51));
+
         jLabel8.setText("Surname");
 
         surname_input.addActionListener(new java.awt.event.ActionListener() {
@@ -283,27 +285,37 @@ public class UserActivity extends javax.swing.JFrame {
 
     private void update_borrower_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_borrower_buttonActionPerformed
         // TODO add your handling code here:
-       int borrowerID = Integer.parseInt(borrower_id_input.getText());
-        String name = name_input.getText();
-        String surname = surname_input.getText();
-        String address = address_input.getText();
-        String email = email_input.getText();
-        int phone = Integer.parseInt(phone_input.getText());
-        int accountNo = Integer.parseInt(accountNo_input.getText());
-        String username = username_input.getText();
-        String password = password_input.getText();
-        Borrower borrower = new Borrower(borrowerID, name, surname, address, email, phone, accountNo, username, password);
-        String message_from_server = library.updateBorrower(borrower);
-        message_from_server_label.setText(message_from_server);
-        borrower_id_input.setText("");
-        name_input.setText("");
-        surname_input.setText("");
-        address_input.setText("");
-        email_input.setText("");
-        phone_input.setText("");
-        accountNo_input.setText("");
-        username_input.setText("");
-        password_input.setText("");
+               String borrowerIDString = borrower_id_input.getText();
+        if ("".equals(borrowerIDString)){
+            message_from_server_label.setText("enter unique borrower ID");
+        }
+        else if (borrowerIDString.matches(".*[a-z].*")) { 
+         // Do something
+          message_from_server_label.setText("borrowerID must only contain numbers");
+        }
+        else{
+            int borrowerID = Integer.parseInt(borrower_id_input.getText());
+            String name = name_input.getText();
+            String surname = surname_input.getText();
+            String address = address_input.getText();
+            String email = email_input.getText();
+            int phone = Integer.parseInt(phone_input.getText());
+            int accountNo = Integer.parseInt(accountNo_input.getText());
+            String username = username_input.getText();
+            String password = password_input.getText();
+            Borrower borrower = new Borrower(borrowerID, name, surname, address, email, phone, accountNo, username, password);
+            String message_from_server = library.updateBorrower(borrower);
+            message_from_server_label.setText(message_from_server);
+            borrower_id_input.setText("");
+            name_input.setText("");
+            surname_input.setText("");
+            address_input.setText("");
+            email_input.setText("");
+            phone_input.setText("");
+            accountNo_input.setText("");
+            username_input.setText("");
+            password_input.setText("");
+        }
 
     }//GEN-LAST:event_update_borrower_buttonActionPerformed
 
@@ -317,30 +329,41 @@ public class UserActivity extends javax.swing.JFrame {
     
     private void add_borrower_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_borrower_buttonActionPerformed
         // TODO add your handling code here:
-        int borrowerID = Integer.parseInt(borrower_id_input.getText());
-        String name = name_input.getText();
-        String surname = surname_input.getText();
-        String address = address_input.getText();
-        String email = email_input.getText();
-        int phone = Integer.parseInt(phone_input.getText());
-        int accountNo = Integer.parseInt(accountNo_input.getText());
-        String username = username_input.getText();
-        String password = password_input.getText();
-        String openingDate = this.getCurrentDate();
-        int openingBalance = 0;
-        Borrower borrower = new Borrower(borrowerID, name, surname, address, email, phone, accountNo, username, password);
-        Account account = new Account(accountNo, openingBalance, openingDate, borrower);
-        String message_from_server = library.addAccount(account);
-        message_from_server_label.setText(message_from_server);
-        borrower_id_input.setText("");
-        name_input.setText("");
-        surname_input.setText("");
-        address_input.setText("");
-        email_input.setText("");
-        phone_input.setText("");
-        accountNo_input.setText("");
-        username_input.setText("");
-        password_input.setText("");
+        String borrowerIDString = borrower_id_input.getText();
+        if ("".equals(borrowerIDString)){
+            message_from_server_label.setText("enter unique borrower ID");
+        }
+        else if (borrowerIDString.matches(".*[a-z].*")) { 
+         // Do something
+          message_from_server_label.setText("borrowerID must only contain numbers");
+        }
+        else{
+
+            int borrowerID = Integer.parseInt(borrower_id_input.getText());
+            String name = name_input.getText();
+            String surname = surname_input.getText();
+            String address = address_input.getText();
+            String email = email_input.getText();
+            int phone = Integer.parseInt(phone_input.getText());
+            int accountNo = Integer.parseInt(accountNo_input.getText());
+            String username = username_input.getText();
+            String password = password_input.getText();
+            String openingDate = this.getCurrentDate();
+            int openingBalance = 0;
+            Borrower borrower = new Borrower(borrowerID, name, surname, address, email, phone, accountNo, username, password);
+            Account account = new Account(accountNo, openingBalance, openingDate, borrower);
+            String message_from_server = library.addAccount(account);
+            message_from_server_label.setText(message_from_server);
+            borrower_id_input.setText("");
+            name_input.setText("");
+            surname_input.setText("");
+            address_input.setText("");
+            email_input.setText("");
+            phone_input.setText("");
+            accountNo_input.setText("");
+            username_input.setText("");
+            password_input.setText("");
+        }
 
     }//GEN-LAST:event_add_borrower_buttonActionPerformed
 
@@ -355,30 +378,40 @@ public class UserActivity extends javax.swing.JFrame {
     private void check_member_exist_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_member_exist_buttonActionPerformed
         // TODO add your handling code here:
         message_from_server_label.setText("");
-        int borrower_id = Integer.parseInt(borrower_id_input.getText());        
-        ArrayList<Borrower> borrowerlist = library.getBorrowerInformation(borrower_id);
-        if (borrowerlist.size()==0){
-            item_doesnt_exist_message.setText("borrower account doesn't exist");
-            name_input.setText("");
-            surname_input.setText("");
-            address_input.setText("");
-            email_input.setText("");
-            phone_input.setText("");
-            accountNo_input.setText("");
-            username_input.setText("");
-            password_input.setText("");
-        }else{
-            Borrower borrower = borrowerlist.get(0);
-            item_doesnt_exist_message.setText("");
-            name_input.setText(borrower.getName());
-            surname_input.setText(borrower.getSurname());
-            address_input.setText(borrower.getAddress());            
-            email_input.setText(borrower.getEmail());
-            phone_input.setText(Integer.toString(borrower.getPhone()));
-            accountNo_input.setText(Integer.toString(borrower.getAccountNo()));
-            username_input.setText(borrower.getUsername());
-            password_input.setText(borrower.getPassword());
-            
+        String borrowerIDString = borrower_id_input.getText();
+        if ("".equals(borrowerIDString)){
+            message_from_server_label.setText("enter unique borrower ID");
+        }
+        else if (borrowerIDString.matches(".*[a-z].*")) { 
+         // Do something
+          message_from_server_label.setText("borrowerID must only contain numbers");
+        }
+        else{
+            int borrower_id = Integer.parseInt(borrower_id_input.getText());        
+            ArrayList<Borrower> borrowerlist = library.getBorrowerInformation(borrower_id);
+            if (borrowerlist.size()==0){
+                item_doesnt_exist_message.setText("borrower account doesn't exist");
+                name_input.setText("");
+                surname_input.setText("");
+                address_input.setText("");
+                email_input.setText("");
+                phone_input.setText("");
+                accountNo_input.setText("");
+                username_input.setText("");
+                password_input.setText("");
+            }else{
+                Borrower borrower = borrowerlist.get(0);
+                item_doesnt_exist_message.setText("");
+                name_input.setText(borrower.getName());
+                surname_input.setText(borrower.getSurname());
+                address_input.setText(borrower.getAddress());            
+                email_input.setText(borrower.getEmail());
+                phone_input.setText(Integer.toString(borrower.getPhone()));
+                accountNo_input.setText(Integer.toString(borrower.getAccountNo()));
+                username_input.setText(borrower.getUsername());
+                password_input.setText(borrower.getPassword());
+
+            }
         }
 
     }//GEN-LAST:event_check_member_exist_buttonActionPerformed
