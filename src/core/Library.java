@@ -370,7 +370,40 @@ public class Library {
 
         }
     }
-    
+ 
+    public void renewLoan(Loan loan){
+        Connection conn = this.connectToLibraryDatabase("admin", "admin");
+        String message_from_server = null;
+        int borrowerID = loan.getBorrowerID();
+        String duedate = loan.getDueDate();
+        String type = loan.getType();
+        ArrayList<Item> items = loan.getItems();
+        for (Item item : items){
+            try {
+                int renewalLimit = loan.getRenewalLimit(item.getIdentifier())+1;
+                String query = "update Loan set DueDate = ?, RenewalLimit=? where Item = ?";
+                PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setString(1, duedate);
+                stmt.setInt(2, renewalLimit);
+                stmt.setString(3, item.getIdentifier());
+                stmt.execute();
+                        System.out.print("renew loan");
+
+    //            message_from_server = "loan successfully created";
+                conn.close();           
+            }
+            catch (SQLException ex) {
+            // handle any errors
+              String exception = ("SQLException: " + ex.getMessage());                 
+              String state = ("SQLState: " + ex.getSQLState());
+              String vendor = ("VendorError: " + ex.getErrorCode());
+              System.out.print(exception + " " + state + " " + vendor);
+            }
+           // return message_from_server;
+
+        }
+    }
+        
     public HashMap getLoan(int x){
         Connection conn = this.connectToLibraryDatabase("admin", "admin");
         HashMap<Integer, ArrayList> hashmap = new HashMap<Integer, ArrayList>();
@@ -402,7 +435,25 @@ public class Library {
         return hashmap;
     }
     
-    private void removeLoan(){
+    public void removeLoan(String identifier){
+                Connection conn = this.connectToLibraryDatabase("admin", "admin");
+        
+        String message_from_server = null;
+        try {
+            String query = "delete from Loan where Item ='" + identifier + "'";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            //stmt.setString(identifier);
+            stmt.execute();
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+
+        }
     }
     
     public String removeAccount(int borrowerID) {

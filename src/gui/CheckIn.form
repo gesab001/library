@@ -491,9 +491,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Items to return"/>
           </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Items to return"/>
-          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JButton" name="find_item">
           <Properties>

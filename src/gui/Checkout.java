@@ -649,7 +649,7 @@ public class Checkout extends javax.swing.JFrame {
     
     private String getDateNow(){
         Date date = new Date();
-        String strDateFormat = "yyyy-MM-dd";
+        String strDateFormat = "d/MM/yyyy";
         DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
         String formattedDate = dateFormat.format(date);
         return formattedDate;       
@@ -664,7 +664,7 @@ public class Checkout extends javax.swing.JFrame {
         else{
             loanPeriod = 2;
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd" );
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "d-MM-yyyy" );
         Calendar cal = Calendar.getInstance();
         cal.setTime(dateFormat.parse(currentDate));
         cal.add( Calendar.DATE, loanPeriod );

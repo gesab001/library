@@ -659,6 +659,7 @@ public class CheckIn extends javax.swing.JFrame {
                 //change status to available
                 for (Item item : itemlist){
                     item.updateStatus(item.getIdentifier(), "IN");
+                    library.removeLoan(item.getIdentifier());
                 }
                 checkin_complete_dialog.setVisible(true);
             

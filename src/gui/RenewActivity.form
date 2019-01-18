@@ -396,7 +396,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="cancel_button" min="-2" pref="169" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="finish_checkout_button" max="32767" attributes="0"/>
+                          <Component id="renew_finish_button" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -454,7 +454,7 @@
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cancel_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="finish_checkout_button" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="renew_finish_button" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -491,12 +491,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel_buttonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="finish_checkout_button">
+        <Component class="javax.swing.JButton" name="renew_finish_button">
           <Properties>
             <Property name="text" type="java.lang.String" value="RENEW ITEMS"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finish_checkout_buttonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="renew_finish_buttonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">

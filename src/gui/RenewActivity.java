@@ -77,7 +77,7 @@ public class RenewActivity extends javax.swing.JFrame {
         add_item_button = new javax.swing.JButton();
         item_doesnt_exist = new javax.swing.JLabel();
         cancel_button = new javax.swing.JButton();
-        finish_checkout_button = new javax.swing.JButton();
+        renew_finish_button = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         find_item = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -322,10 +322,10 @@ public class RenewActivity extends javax.swing.JFrame {
             }
         });
 
-        finish_checkout_button.setText("RENEW ITEMS");
-        finish_checkout_button.addActionListener(new java.awt.event.ActionListener() {
+        renew_finish_button.setText("RENEW ITEMS");
+        renew_finish_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finish_checkout_buttonActionPerformed(evt);
+                renew_finish_buttonActionPerformed(evt);
             }
         });
 
@@ -375,7 +375,7 @@ public class RenewActivity extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(finish_checkout_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(renew_finish_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
@@ -421,7 +421,7 @@ public class RenewActivity extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel_button)
-                    .addComponent(finish_checkout_button)))
+                    .addComponent(renew_finish_button)))
         );
 
         jButton1.setText("MENU");
@@ -596,10 +596,11 @@ public class RenewActivity extends javax.swing.JFrame {
 
     private void add_item_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_item_buttonActionPerformed
         // TODO add your handling code here:
+        int renewalLimit = loan.getRenewalLimit(item.getIdentifier());
         error_borrower_id.setText("");
-        if ("OUT".equals(item.getStatus())){
+        if ("IN".equals(item.getStatus())){
             
-            onloan_item_message.setText("cannot add: item is on loan");
+            onloan_item_message.setText("cannot add: item is not on loan");
         }
         else if ("RESERVE".equals(item.getStatus())){
             onloan_item_message.setText("cannot add: item has been reserved");
@@ -608,6 +609,12 @@ public class RenewActivity extends javax.swing.JFrame {
         else if (itemlist.contains(item)){
             onloan_item_message.setText("cannot add: item is already added");
         }
+        
+        else if (renewalLimit==3){
+               onloan_item_message.setText("cannot add: item has reached limit renewal of 3"); 
+                
+        }
+        
         else {
             System.out.print(item.getStatus());
             itemlist.add(item);
@@ -656,11 +663,12 @@ public class RenewActivity extends javax.swing.JFrame {
         Calendar cal = Calendar.getInstance();
         cal.setTime(dateFormat.parse(currentDate));
         cal.add( Calendar.DATE, loanPeriod );
-        String duedate = cal.getTime().toString();
+        String duedate = dateFormat.format(cal.getTime());
         return duedate;
     }
     
-    private void finish_checkout_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finish_checkout_buttonActionPerformed
+    
+    private void renew_finish_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renew_finish_buttonActionPerformed
         // TODO add your handling code here:
 
         //initialize due date
@@ -688,7 +696,7 @@ public class RenewActivity extends javax.swing.JFrame {
                 //create new Loan         //add items and borrower to loan
                 Library library = new Library();
                 Loan loan = new Loan(borrower_id, itemlist, duedate, "Loan");
-                library.addLoan(loan);
+                library.renewLoan(loan);
 
 
                 //change status to on loan
@@ -700,7 +708,7 @@ public class RenewActivity extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_finish_checkout_buttonActionPerformed
+    }//GEN-LAST:event_renew_finish_buttonActionPerformed
 
     private void find_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_itemActionPerformed
         // TODO add your handling code here:
@@ -819,7 +827,6 @@ public class RenewActivity extends javax.swing.JFrame {
     private javax.swing.JTextField email_input;
     private javax.swing.JLabel error_borrower_id;
     private javax.swing.JButton find_item;
-    private javax.swing.JButton finish_checkout_button;
     private javax.swing.JTextArea item_display;
     private javax.swing.JLabel item_doesnt_exist;
     private javax.swing.JLabel item_doesnt_exist_message;
@@ -848,6 +855,7 @@ public class RenewActivity extends javax.swing.JFrame {
     private javax.swing.JLabel onloan_item_message;
     private javax.swing.JTextField password_input;
     private javax.swing.JTextField phone_input;
+    private javax.swing.JButton renew_finish_button;
     private javax.swing.JTextField surname_input;
     private javax.swing.JLabel total_items_display;
     private javax.swing.JButton update_borrower_button;

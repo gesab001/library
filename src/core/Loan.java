@@ -23,9 +23,16 @@ public class Loan {
     String type;
     int borrowerID;
     int renewalLimit;
+    Item item;
     Library library = new Library(){};
     
     public Loan(){}
+    
+    //constructor for loan renewal
+    public Loan(Item _item, int _renewalLimit){
+        this.item = _item;
+        this.renewalLimit = _renewalLimit;
+    }
     
     public Loan(int _borrowerID, ArrayList<Item> _items, String _dueDate, String _type){
         this.items = _items;
@@ -68,6 +75,37 @@ public class Loan {
         return this.items;
     }
     
+    public int getRenewalLimit(String item){
+        int renewalLimit = 0;
+        String message_from_server = null;
+        Connection conn = library.connectToLibraryDatabase("admin", "admin");    
+        try {
+            String query = "select RenewalLimit from Loan where Item='" + item + "'" ;
+            PreparedStatement stmt = conn.prepareStatement(query);
+           // stmt.setString(1, identifier);
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next() == false){
+                return 0;
+            } else{
+                do {
+                renewalLimit = rs.getInt("RenewalLimit");
+                } while(rs.next()); 
+            }
+            
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+          System.out.print(message_from_server);
+        }
+        return renewalLimit;
+    }
+        
+
     public String getDueDate(){
         return this.dueDate;
     }
