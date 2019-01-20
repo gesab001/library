@@ -649,7 +649,7 @@ public class Checkout extends javax.swing.JFrame {
     
     private String getDateNow(){
         Date date = new Date();
-        String strDateFormat = "d/MM/yyyy";
+        String strDateFormat = "d-MM-yyyy";
         DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
         String formattedDate = dateFormat.format(date);
         return formattedDate;       
@@ -674,7 +674,6 @@ public class Checkout extends javax.swing.JFrame {
     
     private void finish_checkout_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finish_checkout_buttonActionPerformed
         // TODO add your handling code here:
-
         //initialize due date
         if ("".equals(borrower_id_input.getText())){
             error_borrower_id.setText("please enter valid borrower_id");
@@ -690,21 +689,21 @@ public class Checkout extends javax.swing.JFrame {
                 error_borrower_id.setText("borrower account doesn't exist");
             }
             else{
-                String duedate = "";
-                try {
-                    duedate = this.getDueDate();
-                } catch (ParseException ex) {
-                    Logger.getLogger(Checkout.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
                 //create new Loan         //add items and borrower to loan
-                Library library = new Library();
-                Loan loan = new Loan(borrower_id, itemlist, duedate, "Loan");
-                library.addLoan(loan);
-
-
+                                  
                 //change status to on loan
                 for (Item item : itemlist){
+                    String duedate = "";
+                    try {
+                    duedate = this.getDueDate();
+                    System.out.print(duedate);
+                    } catch (ParseException ex) {
+                    Logger.getLogger(Checkout.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Library library = new Library();
+                    System.out.print(duedate);
+                    Loan loan = new Loan(borrower_id, itemlist, duedate, "Loan");
+                    library.addLoan(loan);
                     item.updateStatus(item.getIdentifier(), "OUT");
                 }
                 checkout_complete_dialog.setVisible(true);

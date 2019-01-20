@@ -96,8 +96,8 @@ public class OverdueActivity extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         fine_amount = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        amount_to_pay_input = new javax.swing.JTextField();
+        pay_button = new javax.swing.JButton();
 
         checkout_complete_dialog.setSize(new java.awt.Dimension(400, 200));
 
@@ -409,9 +409,9 @@ public class OverdueActivity extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(item_doesnt_exist, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(item_doesnt_exist, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(item_id_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -449,13 +449,18 @@ public class OverdueActivity extends javax.swing.JFrame {
 
         jLabel15.setText("Pay amount:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        amount_to_pay_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                amount_to_pay_inputActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Pay");
+        pay_button.setText("Pay");
+        pay_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pay_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -465,9 +470,9 @@ public class OverdueActivity extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField1)
+                        .addComponent(amount_to_pay_input)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(pay_button))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fine_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -484,8 +489,8 @@ public class OverdueActivity extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(amount_to_pay_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pay_button))
                 .addGap(0, 22, Short.MAX_VALUE))
         );
 
@@ -815,9 +820,16 @@ public class OverdueActivity extends javax.swing.JFrame {
 
     }//GEN-LAST:event_add_item_buttonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void amount_to_pay_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amount_to_pay_inputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_amount_to_pay_inputActionPerformed
+
+    private void pay_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pay_buttonActionPerformed
+        int accountNo = Integer.parseInt(accountNo_input.getText());
+        account.creditAmount(accountNo, Integer.parseInt(amount_to_pay_input.getText()));
+        int balance = account.getBalance(accountNo);
+        fine_amount.setText("TOTAL FINES TO PAY: $" + Integer.toString(balance));
+    }//GEN-LAST:event_pay_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -874,6 +886,7 @@ public class OverdueActivity extends javax.swing.JFrame {
     private javax.swing.JButton add_borrower_button;
     private javax.swing.JButton add_item_button;
     private javax.swing.JTextField address_input;
+    private javax.swing.JTextField amount_to_pay_input;
     private javax.swing.JTextField borrower_id_input;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancel_button;
@@ -892,7 +905,6 @@ public class OverdueActivity extends javax.swing.JFrame {
     private javax.swing.JLabel item_doesnt_exist_message;
     private javax.swing.JTextField item_id_input;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -912,12 +924,12 @@ public class OverdueActivity extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel message_from_server_label;
     private javax.swing.JTextField name_input;
     private javax.swing.JButton ok_complete_button;
     private javax.swing.JLabel onloan_item_message;
     private javax.swing.JTextField password_input;
+    private javax.swing.JButton pay_button;
     private javax.swing.JTextField phone_input;
     private javax.swing.JTextField surname_input;
     private javax.swing.JLabel total_items_display;

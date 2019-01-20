@@ -95,7 +95,7 @@ public class Library {
         Connection conn = this.connectToLibraryDatabase("admin", "admin");
         String message_from_server = null;
         int accountNo = account.getAccountNo();
-        int balance = account.getBalance();
+        int balance = 0;
         String openingDate = account.getOpeningDate();
         int borrowerID = account.getBorrower().getBorrowerID();
         try {

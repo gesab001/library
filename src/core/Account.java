@@ -40,8 +40,26 @@ public class Account  {
         return this.accNo;
     }
     
-    public int getBalance(){
-        return this.balance;
+    public int getBalance(int accountNo){
+        Library library  = new Library();
+        int balance = 0;
+        Connection conn = library.connectToLibraryDatabase("admin", "admin");        
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select Balance from Account where AccountNo = " + accountNo);
+            while(rs.next())  {     
+                balance = rs.getInt("Balance");
+            }
+            
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          System.out.println("SQLException: " + ex.getMessage());                 
+          System.out.println("SQLState: " + ex.getSQLState());
+          System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return balance;
     }
     
     public String getOpeningDate(){
@@ -50,6 +68,29 @@ public class Account  {
     
     public Borrower getBorrower(){
         return borrower;
+    }
+    
+    public int getAccountNumber(String borrowerID){
+        Library library  = new Library();
+        Connection conn = library.connectToLibraryDatabase("admin", "admin");
+        int accountNo = 0;
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select AccountNo from Account where AccountNo = " + borrowerID);
+            while(rs.next())  {     
+                accountNo = Integer.parseInt(rs.getString("BorrowerID"));
+                //System.out.print(rs.getString("Balance"));
+            }
+            
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          System.out.println("SQLException: " + ex.getMessage());                 
+          System.out.println("SQLState: " + ex.getSQLState());
+          System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return accountNo;
     }
    
     public String addBorrower(){
@@ -91,11 +132,11 @@ public class Account  {
         return message_from_server;
     }
     
-    public String debitAmount(int accNo, int amount){
+    public String debitAmount(int accNo, Long amount){
         Library library  = new Library();
         Connection conn = library.connectToLibraryDatabase("admin", "admin");
         int balance = this.setBalance(accNo);
-        int newbalance = balance - amount;
+        Long newbalance = balance + amount;
         try {
             String query = "update Account set Balance= " + newbalance + " where AccountNo = (?)";
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -116,7 +157,7 @@ public class Account  {
         Library library  = new Library();
         Connection conn = library.connectToLibraryDatabase("admin", "admin");
         int balance = this.setBalance(accNo);
-        int newbalance = balance + amount;
+        int newbalance = balance - amount;
         try {
             String query = "update Account set Balance= " + newbalance + " where AccountNo = (?)";
             PreparedStatement stmt = conn.prepareStatement(query);

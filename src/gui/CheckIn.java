@@ -34,6 +34,7 @@ public class CheckIn extends javax.swing.JFrame {
     public CheckIn() {
         initComponents();
         borrower_panel.setVisible(false);
+        item_id_input.setText("");
     }
 
     /**
@@ -593,7 +594,7 @@ public class CheckIn extends javax.swing.JFrame {
     
     private String getDateNow(){
         Date date = new Date();
-        String strDateFormat = "yyyy-MM-dd";
+        String strDateFormat = "d-MM-yyyy";
         DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
         String formattedDate = dateFormat.format(date);
         return formattedDate;       
@@ -601,21 +602,14 @@ public class CheckIn extends javax.swing.JFrame {
     
     private long calculateOverdue() throws ParseException{
         String currentDate = getDateNow();
-        String dueDate = loan.getDueDateForFineCalculation(item.getIdentifier());
-         int loanPeriod = 0;
-        if (item.getType()=="book"){
-           loanPeriod=21;
-        }
-        else{
-            loanPeriod = 14;
-        }
-        SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd" );
+        Loan loan = new Loan(){};
+        String dueDate = loan.getDueDateForFineCalculation(item_id_input.getText());
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "d-MM-yyyy" );
         Calendar cal= Calendar.getInstance();
         cal.setTime(dateFormat.parse(currentDate));
         Calendar cal2 = Calendar.getInstance();
         cal2.setTime(dateFormat.parse(dueDate));
         //cal.add( Calendar.DATE, loanPeriod );
-        String duedate = cal.getTime().toString();
         
         long daysBetween = ChronoUnit.DAYS.between(cal.toInstant(), cal2.toInstant());
         return daysBetween;
@@ -667,6 +661,9 @@ public class CheckIn extends javax.swing.JFrame {
             //            String status = item.getStatus();
             //            String item_info = "Title: " + title + "\nAuthor: " + author + "\nKeywords: " + keywords + "\nType: " + type + "\nStatus: " + status;
             item_display.setText(item_info);
+            Loan loan = new Loan(){};
+            String dueDate = loan.getDueDateForFineCalculation(item.getIdentifier());
+            item_display.append("\nDue Date: "+dueDate);
 
         }
     }//GEN-LAST:event_find_itemActionPerformed
@@ -695,6 +692,12 @@ public class CheckIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         error_borrower_id.setText("");
         long overdue = 0;
+        try {
+            overdue = calculateOverdue();
+        } catch (ParseException ex) {
+            Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         if ("IN".equals(item.getStatus())){
             onloan_item_message.setText("cannot add: item is already IN");         
         }
@@ -702,9 +705,10 @@ public class CheckIn extends javax.swing.JFrame {
             itemlist.add(item);
             try {
                 long fineamount = this.chargeFine(item);
-                String borrowerID = loan.getBorrowerID();
-                int accountNo = loan.getAccNo(borrowerID);
-                account.debitAmount(loan.fineamount);
+                loan = new Loan();
+                String borrowerID = loan.getBorrowerIDForCheckIn(item.getIdentifier());
+                int accountNo = account.getAccountNumber(borrowerID);
+                account.debitAmount(accountNo, fineamount);
                 checkout_items_display.append(item.checkoutItemToString()+"\n");
                 checkout_items_display.append("Overdue: " + Long.toString(overdue));
             } catch (ParseException ex) {

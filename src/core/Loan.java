@@ -84,14 +84,10 @@ public class Loan {
             PreparedStatement stmt = conn.prepareStatement(query);
            // stmt.setString(1, identifier);
             ResultSet rs = stmt.executeQuery(query);
-            if (rs.next() == false){
-                return duedate;
-            } else{
-                do {
-                duedate = rs.getString("DueDate");
-                } while(rs.next()); 
+            while(rs.next()){
+            duedate = rs.getString("DueDate");
             }
-            
+
             conn.close();           
         }
         catch (SQLException ex) {
@@ -102,6 +98,7 @@ public class Loan {
           message_from_server = exception + " " + state + " " + vendor;
           System.out.print(message_from_server);
         }
+        System.out.print(duedate);
         return duedate;
     }
     public int getRenewalLimit(String item){
@@ -189,6 +186,36 @@ public class Loan {
         String result = sb.toString();
         return result;
         
+    }
+    
+    public String getBorrowerIDForCheckIn(String identifier){
+        String message_from_server = null;
+        Connection conn = library.connectToLibraryDatabase("admin", "admin");
+        String id = null;
+        try {
+            String query = "select BorrowerID from Loan where Item='" + identifier + "'" ;
+            PreparedStatement stmt = conn.prepareStatement(query);
+           // stmt.setString(1, identifier);
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next() == false){
+                return null;
+            } else{
+                do {
+                id  = rs.getString("BorrowerID").toString();
+                } while(rs.next()); 
+            }
+            
+            conn.close();           
+        }
+        catch (SQLException ex) {
+        // handle any errors
+          String exception = ("SQLException: " + ex.getMessage());                 
+          String state = ("SQLState: " + ex.getSQLState());
+          String vendor = ("VendorError: " + ex.getErrorCode());
+          message_from_server = exception + " " + state + " " + vendor;
+          System.out.print(message_from_server);
+        }
+        return id;
     }
     
 
