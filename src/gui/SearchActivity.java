@@ -124,7 +124,7 @@ public class SearchActivity extends javax.swing.JFrame {
         error_borrower_id.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         error_borrower_id.setForeground(new java.awt.Color(255, 0, 0));
 
-        jLabel10.setText("Keyword: (type any word from a title, author, keyword, status, type)");
+        jLabel10.setText("Keyword: (type any word from a title, author, keyword)");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

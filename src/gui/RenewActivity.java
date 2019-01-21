@@ -30,8 +30,15 @@ public class RenewActivity extends javax.swing.JFrame {
      */
     public RenewActivity() {
         initComponents();
-    }
+        this.hideButtons();
+    }   
 
+    public void hideButtons(){
+        delete_borrower_button.setVisible(false);
+        update_borrower_button.setVisible(false);
+        add_borrower_button.setVisible(false);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

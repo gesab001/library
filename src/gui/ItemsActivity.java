@@ -73,9 +73,9 @@ public class ItemsActivity extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Type");
+        jLabel3.setText("Type (enter \"Book\" or \"Magazine\")");
 
-        jLabel4.setText("Status");
+        jLabel4.setText("Status (type \"IN\" for available)");
 
         add_item_button.setText("Add");
         add_item_button.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +119,6 @@ public class ItemsActivity extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel3)
                     .addComponent(item_id_input)
                     .addComponent(check_item_exist_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(title_input)
@@ -133,7 +132,8 @@ public class ItemsActivity extends javax.swing.JFrame {
                         .addComponent(update_item_button, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(delete_item_button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(message_from_server_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(message_from_server_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

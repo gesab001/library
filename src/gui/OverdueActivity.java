@@ -33,6 +33,10 @@ public class OverdueActivity extends javax.swing.JFrame {
      */
     public OverdueActivity() {
         initComponents();
+        items_panel.setVisible(false);
+        add_borrower_button.setVisible(false);
+        delete_borrower_button.setVisible(false);
+        update_borrower_button.setVisible(false);
     }
 
     /**
@@ -74,7 +78,7 @@ public class OverdueActivity extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         password_input = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        items_panel = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         item_id_input = new javax.swing.JTextField();
         add_item_button = new javax.swing.JButton();
@@ -243,7 +247,7 @@ public class OverdueActivity extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel3))
-                        .addContainerGap(47, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(surname_input)
                     .addComponent(name_input)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -310,8 +314,8 @@ public class OverdueActivity extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("ACCOUNT BALANCE");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.setEnabled(false);
+        items_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        items_panel.setEnabled(false);
 
         jLabel9.setText("Item ID");
 
@@ -366,59 +370,59 @@ public class OverdueActivity extends javax.swing.JFrame {
         error_borrower_id.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         error_borrower_id.setForeground(new java.awt.Color(255, 0, 0));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout items_panelLayout = new javax.swing.GroupLayout(items_panel);
+        items_panel.setLayout(items_panelLayout);
+        items_panelLayout.setHorizontalGroup(
+            items_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(items_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(items_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(items_panelLayout.createSequentialGroup()
                         .addComponent(cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(finish_checkout_button, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(items_panelLayout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(item_doesnt_exist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(items_panelLayout.createSequentialGroup()
                         .addComponent(item_id_input, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(find_item, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(items_panelLayout.createSequentialGroup()
+                        .addGroup(items_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(items_panelLayout.createSequentialGroup()
                                 .addGap(77, 77, 77)
                                 .addComponent(onloan_item_message))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(items_panelLayout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(56, 56, 56)
                                 .addComponent(total_items_display)
                                 .addGap(18, 18, 18)
                                 .addComponent(error_borrower_id, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(add_item_button))
-                        .addGap(0, 27, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(checkout_items))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        items_panelLayout.setVerticalGroup(
+            items_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(items_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(items_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(item_doesnt_exist, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(items_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(item_id_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(find_item))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(checkout_items, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(onloan_item_message)
                 .addGap(37, 37, 37)
                 .addComponent(add_item_button)
@@ -427,12 +431,12 @@ public class OverdueActivity extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(items_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(total_items_display)
                     .addComponent(error_borrower_id))
                 .addGap(12, 12, 12)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(items_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel_button)
                     .addComponent(jButton3)
                     .addComponent(finish_checkout_button)))
@@ -491,7 +495,7 @@ public class OverdueActivity extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(amount_to_pay_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pay_button))
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -505,7 +509,7 @@ public class OverdueActivity extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(items_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -526,47 +530,13 @@ public class OverdueActivity extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(items_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void delete_borrower_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_borrower_buttonActionPerformed
-        // TODO add your handling code here:
-        int borrowerID = Integer.parseInt(borrower_id_input.getText());
-        String message_confirmation = library.removeAccount(borrowerID);
-        message_from_server_label.setText(message_confirmation);
-
-    }//GEN-LAST:event_delete_borrower_buttonActionPerformed
-
-    private void update_borrower_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_borrower_buttonActionPerformed
-        // TODO add your handling code here:
-       int borrowerID = Integer.parseInt(borrower_id_input.getText());
-        String name = name_input.getText();
-        String surname = surname_input.getText();
-        String address = address_input.getText();
-        String email = email_input.getText();
-        int phone = Integer.parseInt(phone_input.getText());
-        int accountNo = Integer.parseInt(accountNo_input.getText());
-        String username = username_input.getText();
-        String password = password_input.getText();
-        Borrower borrower = new Borrower(borrowerID, name, surname, address, email, phone, accountNo, username, password);
-        String message_from_server = library.updateBorrower(borrower);
-        message_from_server_label.setText(message_from_server);
-        borrower_id_input.setText("");
-        name_input.setText("");
-        surname_input.setText("");
-        address_input.setText("");
-        email_input.setText("");
-        phone_input.setText("");
-        accountNo_input.setText("");
-        username_input.setText("");
-        password_input.setText("");
-
-    }//GEN-LAST:event_update_borrower_buttonActionPerformed
 
     private String getCurrentDate(){
         Date date = new Date();
@@ -576,98 +546,6 @@ public class OverdueActivity extends javax.swing.JFrame {
         return formattedDate;
         
     }
-    private void add_borrower_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_borrower_buttonActionPerformed
-        // TODO add your handling code here:
-        int borrowerID = Integer.parseInt(borrower_id_input.getText());
-        String name = name_input.getText();
-        String surname = surname_input.getText();
-        String address = address_input.getText();
-        String email = email_input.getText();
-        int phone = Integer.parseInt(phone_input.getText());
-        int accountNo = Integer.parseInt(accountNo_input.getText());
-        String username = username_input.getText();
-        String password = password_input.getText();
-        String openingDate = this.getCurrentDate();
-        int openingBalance = 0;
-        Borrower borrower = new Borrower(borrowerID, name, surname, address, email, phone, accountNo, username, password);
-        Account account = new Account(accountNo, openingBalance, openingDate, borrower);
-        String message_from_server = library.addAccount(account);
-        message_from_server_label.setText(message_from_server);
-        borrower_id_input.setText("");
-        name_input.setText("");
-        surname_input.setText("");
-        address_input.setText("");
-        email_input.setText("");
-        phone_input.setText("");
-        accountNo_input.setText("");
-        username_input.setText("");
-        password_input.setText("");
-
-    }//GEN-LAST:event_add_borrower_buttonActionPerformed
-
-    private void accountNo_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountNo_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_accountNo_inputActionPerformed
-
-    private void name_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_name_inputActionPerformed
-
-    private void check_member_exist_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_member_exist_buttonActionPerformed
-        // TODO add your handling code here:
-        message_from_server_label.setText("");
-        String borrowerIDString = borrower_id_input.getText();
-        if ("".equals(borrowerIDString)){
-            message_from_server_label.setText("enter unique borrower ID");
-        }
-        else if (borrowerIDString.matches(".*[a-z].*")) { 
-         // Do something
-          message_from_server_label.setText("borrowerID must only contain numbers");
-        }
-        else{
-            int borrower_id = Integer.parseInt(borrower_id_input.getText());        
-            ArrayList<Borrower> borrowerlist = library.getBorrowerInformation(borrower_id);
-            if (borrowerlist.size()==0){
-                item_doesnt_exist_message.setText("borrower account doesn't exist");
-                name_input.setText("");
-                surname_input.setText("");
-                address_input.setText("");
-                email_input.setText("");
-                phone_input.setText("");
-                accountNo_input.setText("");
-                username_input.setText("");
-                password_input.setText("");
-            }else{
-                Borrower borrower = borrowerlist.get(0);
-                item_doesnt_exist_message.setText("");
-                name_input.setText(borrower.getName());
-                surname_input.setText(borrower.getSurname());
-                address_input.setText(borrower.getAddress());            
-                email_input.setText(borrower.getEmail());
-                phone_input.setText(Integer.toString(borrower.getPhone()));
-                accountNo_input.setText(Integer.toString(borrower.getAccountNo()));
-                username_input.setText(borrower.getUsername());
-                password_input.setText(borrower.getPassword());
-                accountDetails = account.getAccountDetails(borrower.getAccountNo()); //Hashmp contains account number and 
-                //display balance
-                ArrayList accountInfo = accountDetails.get(borrower.getAccountNo());
-                balance = Integer.parseInt(accountInfo.get(0).toString());
-                fine_amount.setText("TOTAL FINES TO PAY: $" + Integer.toString(balance));
-                
-
-            }
-        }
-
-    }//GEN-LAST:event_check_member_exist_buttonActionPerformed
-
-    private void surname_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surname_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_surname_inputActionPerformed
-
-    private void username_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_username_inputActionPerformed
-
 //    private String getDueDate(){
 //      int loanPeriod = 0;
 //        if (item.getType()=="book"){
@@ -831,6 +709,127 @@ public class OverdueActivity extends javax.swing.JFrame {
         fine_amount.setText("TOTAL FINES TO PAY: $" + Integer.toString(balance));
     }//GEN-LAST:event_pay_buttonActionPerformed
 
+    private void username_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username_inputActionPerformed
+
+    private void surname_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surname_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_surname_inputActionPerformed
+
+    private void delete_borrower_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_borrower_buttonActionPerformed
+        // TODO add your handling code here:
+        int borrowerID = Integer.parseInt(borrower_id_input.getText());
+        String message_confirmation = library.removeAccount(borrowerID);
+        message_from_server_label.setText(message_confirmation);
+    }//GEN-LAST:event_delete_borrower_buttonActionPerformed
+
+    private void update_borrower_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_borrower_buttonActionPerformed
+        // TODO add your handling code here:
+        int borrowerID = Integer.parseInt(borrower_id_input.getText());
+        String name = name_input.getText();
+        String surname = surname_input.getText();
+        String address = address_input.getText();
+        String email = email_input.getText();
+        int phone = Integer.parseInt(phone_input.getText());
+        int accountNo = Integer.parseInt(accountNo_input.getText());
+        String username = username_input.getText();
+        String password = password_input.getText();
+        Borrower borrower = new Borrower(borrowerID, name, surname, address, email, phone, accountNo, username, password);
+        String message_from_server = library.updateBorrower(borrower);
+        message_from_server_label.setText(message_from_server);
+        borrower_id_input.setText("");
+        name_input.setText("");
+        surname_input.setText("");
+        address_input.setText("");
+        email_input.setText("");
+        phone_input.setText("");
+        accountNo_input.setText("");
+        username_input.setText("");
+        password_input.setText("");
+    }//GEN-LAST:event_update_borrower_buttonActionPerformed
+
+    private void add_borrower_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_borrower_buttonActionPerformed
+        // TODO add your handling code here:
+        int borrowerID = Integer.parseInt(borrower_id_input.getText());
+        String name = name_input.getText();
+        String surname = surname_input.getText();
+        String address = address_input.getText();
+        String email = email_input.getText();
+        int phone = Integer.parseInt(phone_input.getText());
+        int accountNo = Integer.parseInt(accountNo_input.getText());
+        String username = username_input.getText();
+        String password = password_input.getText();
+        String openingDate = this.getCurrentDate();
+        int openingBalance = 0;
+        Borrower borrower = new Borrower(borrowerID, name, surname, address, email, phone, accountNo, username, password);
+        Account account = new Account(accountNo, openingBalance, openingDate, borrower);
+        String message_from_server = library.addAccount(account);
+        message_from_server_label.setText(message_from_server);
+        borrower_id_input.setText("");
+        name_input.setText("");
+        surname_input.setText("");
+        address_input.setText("");
+        email_input.setText("");
+        phone_input.setText("");
+        accountNo_input.setText("");
+        username_input.setText("");
+        password_input.setText("");
+    }//GEN-LAST:event_add_borrower_buttonActionPerformed
+
+    private void accountNo_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountNo_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accountNo_inputActionPerformed
+
+    private void name_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_inputActionPerformed
+
+    private void check_member_exist_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_member_exist_buttonActionPerformed
+        // TODO add your handling code here:
+        message_from_server_label.setText("");
+        String borrowerIDString = borrower_id_input.getText();
+        if ("".equals(borrowerIDString)){
+            message_from_server_label.setText("enter unique borrower ID");
+        }
+        else if (borrowerIDString.matches(".*[a-z].*")) {
+            // Do something
+            message_from_server_label.setText("borrowerID must only contain numbers");
+        }
+        else{
+            int borrower_id = Integer.parseInt(borrower_id_input.getText());
+            ArrayList<Borrower> borrowerlist = library.getBorrowerInformation(borrower_id);
+            if (borrowerlist.size()==0){
+                item_doesnt_exist_message.setText("borrower account doesn't exist");
+                name_input.setText("");
+                surname_input.setText("");
+                address_input.setText("");
+                email_input.setText("");
+                phone_input.setText("");
+                accountNo_input.setText("");
+                username_input.setText("");
+                password_input.setText("");
+            }else{
+                Borrower borrower = borrowerlist.get(0);
+                item_doesnt_exist_message.setText("");
+                name_input.setText(borrower.getName());
+                surname_input.setText(borrower.getSurname());
+                address_input.setText(borrower.getAddress());
+                email_input.setText(borrower.getEmail());
+                phone_input.setText(Integer.toString(borrower.getPhone()));
+                accountNo_input.setText(Integer.toString(borrower.getAccountNo()));
+                username_input.setText(borrower.getUsername());
+                password_input.setText(borrower.getPassword());
+                accountDetails = account.getAccountDetails(borrower.getAccountNo()); //Hashmp contains account number and
+                //display balance
+                ArrayList accountInfo = accountDetails.get(borrower.getAccountNo());
+                balance = Integer.parseInt(accountInfo.get(0).toString());
+                fine_amount.setText("TOTAL FINES TO PAY: $" + Integer.toString(balance));
+
+            }
+        }
+    }//GEN-LAST:event_check_member_exist_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -904,6 +903,7 @@ public class OverdueActivity extends javax.swing.JFrame {
     private javax.swing.JLabel item_doesnt_exist;
     private javax.swing.JLabel item_doesnt_exist_message;
     private javax.swing.JTextField item_id_input;
+    private javax.swing.JPanel items_panel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -921,7 +921,6 @@ public class OverdueActivity extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel message_from_server_label;

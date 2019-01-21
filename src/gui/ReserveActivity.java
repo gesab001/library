@@ -29,6 +29,9 @@ public class ReserveActivity extends javax.swing.JFrame {
      */
     public ReserveActivity() {
         initComponents();
+        add_borrower_button.setVisible(false);
+        delete_borrower_button.setVisible(false);
+        update_borrower_button.setVisible(false);
     }
 
     /**
