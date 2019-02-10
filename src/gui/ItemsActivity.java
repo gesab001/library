@@ -238,9 +238,10 @@ public class ItemsActivity extends javax.swing.JFrame {
         title_input.setText("");
         author_input.setText("");
         keywords_input.setText("");
-        type_input.getText();
+        type_input.setText("");
         status_input.setText("");
-        
+        message_from_server_label.setText("");
+
         
         
     }//GEN-LAST:event_add_item_buttonActionPerformed

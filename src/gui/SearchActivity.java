@@ -291,9 +291,11 @@ public class SearchActivity extends javax.swing.JFrame {
         String keyword = keyword_input.getText();
         ArrayList<Item> itemslist = library.getItems(keyword);
         if (itemslist.isEmpty()){
+            item_display.append("item doesn't exist");
             System.out.print("item doesn't exist");
 
         }else{
+            item_display.append("total items found: " + Integer.toString(itemslist.size())+"/n/n");
             for (Item itemfound : itemslist){
               String item_info = itemfound.itemToString();
 //            String title = item.getTitle();

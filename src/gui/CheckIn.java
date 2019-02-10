@@ -715,7 +715,7 @@ public class CheckIn extends javax.swing.JFrame {
                 Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
             }
             int totalItems = itemlist.size();
-            total_items_display.setText("TOTAL ITEMS TO RETURN: " + Integer.toString(totalItems));
+            //total_items_display.setText("TOTAL ITEMS TO RETURN: " + Integer.toString(totalItems));
             
         }
     }//GEN-LAST:event_add_item_buttonActionPerformed
